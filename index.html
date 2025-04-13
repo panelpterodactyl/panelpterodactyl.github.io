@@ -14,12 +14,23 @@
       <div class="header-actions">
         <nav>
           <ul>
-            <li><a href="#produk">Produk</a></li>
-            <li><a href="#layanan">Layanan</a></li>
-            <li><a href="#kontak">Kontak</a></li>
-          </ul>
+
+            <div class="menu-container">
+              <a href="#produk" class="menu-item">Produk</a>
+              <div class="menu-item">Layanan</div>
+              <div class="menu-item">Kontak</div>
+            </div>
+            
+            <!-- Nanti di bagian produk, kasih ID 'produk' seperti ini: -->
+            <section id="droplet-list">
+              <h2></h2>
+              <!-- Isi produk di sini -->
+            </section>
+            
+
         </nav>
-        <button id="toggleDark" class="toggle-btn">🌓</button>
+        <button id="toggleDark" class="toggle-theme-btn">🌗 Ganti Tema</button>
+
       </div>
     </div>
   </header>
@@ -28,7 +39,7 @@
     <div class="container">
       <h2>Panel & VPS Termurah Indonesia</h2>
       <p>Layanan cepat, aman, dan terpercaya. Support 24 jam non-stop!</p>
-      <a href="https://wa.me/6281234567890" class="btn">Pesan Sekarang</a>
+      <a href="https://wa.me/601156973637" class="btn">Pesan Sekarang</a>
     </div>
   </section>
 
@@ -67,41 +78,59 @@
       </section>
            
 
-        <section class="droplet-list">
+      <section id="droplet-list" class="produk">
             <div class="container">
               <h2>Akun DigitalOcean - Droplet Paket</h2>
               <div class="droplet-buttons">
+                <a href="https://wa.me/601156973637?text=Halo%20saya%20ingin%20pesan%20Vps%201vCPU%20Dengan%20Spek%202GB%20RAM%202CORE%20SSD" target="_blank">
                 <button class="produk-btn">
-                  <div class="droplet-spec">1vCPU • 1GB RAM • 25GB SSD</div>
+                  <div class="droplet-spec">1vCPU • 2GB RAM • 2 CORE SSD</div>
                   <div class="droplet-price">Rp20.000</div>
                 </button>
+                </a>
+                <a href="https://wa.me/601156973637?text=Halo%20saya%20ingin%20pesan%20Vps%201vCPU%20Dengan%20Spek%204GB%20RAM%204CORE%20SSD" target="_blank">
                 <button class="produk-btn">
-                  <div class="droplet-spec">1vCPU • 2GB RAM • 50GB SSD</div>
+                  <div class="droplet-spec">1vCPU • 4GB RAM • 4CORE SSD</div>
                   <div class="droplet-price">Rp35.000</div>
                 </button>
+                </a>
+                <a href="https://wa.me/601156973637?text=Halo%20saya%20ingin%20pesan%20Vps%202vCPU%20Dengan%20Spek%206GB%20RAM%204CORE%20SSD" target="_blank">
                 <button class="produk-btn">
-                  <div class="droplet-spec">2vCPU • 2GB RAM • 60GB SSD</div>
+                  <div class="droplet-spec">2vCPU • 6GB RAM • 4CORE SSD</div>
                   <div class="droplet-price">Rp55.000</div>
                 </button>
+                </a>
+                <a href="https://wa.me/601156973637?text=Halo%20saya%20ingin%20pesan%20Vps%202vCPU%20Dengan%20Spek%208GB%20RAM%204CORE%20SSD" target="_blank">
                 <button class="produk-btn">
-                  <div class="droplet-spec">2vCPU • 4GB RAM • 80GB SSD</div>
+                  <div class="droplet-spec">2vCPU • 8GB RAM • 4CORE SSD</div>
                   <div class="droplet-price">Rp75.000</div>
                 </button>
+                </a>
+                <a href="https://wa.me/601156973637?text=Halo%20saya%20ingin%20pesan%20Vps%204vCPU%20Dengan%20Spek%2016GB%20RAM%204CORE%20SSD" target="_blank">
                 <button class="produk-btn">
-                  <div class="droplet-spec">4vCPU • 8GB RAM • 160GB SSD</div>
+                  <div class="droplet-spec">4vCPU • 16GB RAM • 4CORE SSD</div>
                   <div class="droplet-price">Rp130.000</div>
                 </button>
+                </a>
+                <a href="https://wa.me/601156973637?text=Halo%20saya%20ingin%20pesan%20Vps%204vCPU%20Dengan%20Spek%2016GB%20RAM%208CORE%20SSD" target="_blank">
+                <button class="produk-btn">
+                  <div class="droplet-spec">4vCPU • 16GB RAM • 8CORE SSD</div>
+                  <div class="droplet-price">Rp130.000</div>
+                </button>
+                </a>
               </div>
             </div>
           </section>
           <section class="install-panel">
             <div class="container">
-              <h2>Install Panel Pterodactyl</h2>
+              <h2>Jasa Install Panel Pterodactyl</h2>
               <div class="panel-buttons">
+                <a href="https://wa.me/601156973637?text=Halo%20saya%20ingin%20pesan%20Jasa%20Install%20Panel%20Pterodactyl" target="_blank">
                 <button class="produk-btn">
                   <div class="droplet-spec">Jasa Install Panel Pterodactyl</div>
                   <div class="droplet-price">Rp10.000 / 1x Setup & Node</div>
                 </button>
+                </a>
               </div>
             </div>
           </section>
@@ -177,7 +206,7 @@
     <div class="container">
       <h2>Hubungi Kami</h2>
       <p>Chat langsung via WhatsApp:</p>
-      <a href="https://wa.me/6281234567890" class="btn">Klik untuk Chat</a>
+      <a href="https://wa.me/601156973637" class="btn">Klik untuk Chat</a>
     </div>
   </section>
 
@@ -204,5 +233,7 @@
       }
     });
   </script>
+  
+  
 </body>
 </html>
