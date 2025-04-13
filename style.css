@@ -362,4 +362,35 @@
     color: #c084fc;
   }
   
-  /* tess 
+  /* tess */
+
+   a {
+  text-decoration: none;
+}
+
+a:focus,
+button:focus {
+  outline: none;
+}
+
+button {
+  outline: none;
+  border: none;
+  background: transparent;
+}
+
+a,
+a:focus,
+a:active,
+button,
+button:focus,
+button:active {
+  outline: none !important;
+  box-shadow: none !important;
+  text-decoration: none;
+}
+
+.produk-btn:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
