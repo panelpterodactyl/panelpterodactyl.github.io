@@ -22,10 +22,6 @@
             </div>
 
             
-
-        </nav>
-        <button id="toggleDark" class="toggle-theme-btn">🌗 Ganti Tema</button>
-
       </div>
     </div>
   </header>
@@ -186,16 +182,13 @@
     </div>
   </section>
 
-  <section id="layanan" class="fitur">
-    <div class="container">
-      <h2>Kenapa Pilih REYZSTORE?</h2>
-      <ul>
-        <li>✔ Harga Termurah & Transparan</li>
-        <li>✔ Support 24/7 via WhatsApp</li>
-        <li>✔ Proses Cepat & Otomatis</li>
-        <li>✔ Garansi Uang Kembali</li>
-      </ul>
-    </div>
+  <div class="highlight-section">
+    <h2>Kenapa Pilih REYZSTORE?</h2>
+    <div class="highlight-box">✓ Harga Termurah & Transparan</div>
+    <div class="highlight-box">✓ Support 24/7 via WhatsApp</div>
+    <div class="highlight-box">✓ Proses Cepat & Otomatis</div>
+    <div class="highlight-box">✓ Garansi Uang Kembali</div>
+  </div>
   </section>
 
   <section id="kontak" class="kontak">
@@ -211,24 +204,6 @@
       <p>© 2025 REYZSTORE.COM — All Rights Reserved.</p>
     </div>
   </footer>
-
-  <script>
-    const toggleBtn = document.getElementById("toggleDark");
-    const body = document.body;
-
-    if (localStorage.getItem("theme") === "dark") {
-      body.classList.add("dark");
-    }
-
-    toggleBtn.addEventListener("click", () => {
-      body.classList.toggle("dark");
-      if (body.classList.contains("dark")) {
-        localStorage.setItem("theme", "dark");
-      } else {
-        localStorage.setItem("theme", "light");
-      }
-    });
-  </script>
   
   
 </body>
