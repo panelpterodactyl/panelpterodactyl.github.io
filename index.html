@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>REYZSTORE.COM</title>
+  <title>LIXXSHOP.MY.ID</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -13,6 +13,16 @@
     <div class="container">
       <h1 class="logo">LIXXSHOP.MY.ID</h1>
       <div class="header-actions">
+
+       
+        <div id="welcome-popup" class="popup show">
+          <div class="popup-content">
+            <h2>Selamat Datang di Website <span style="color:#7c3aed">Lixx Shop!</span></h2>
+            <p>Kami siap membantu kebutuhan panel & VPS kamu 😊</p>
+            <button onclick="closePopup()">Masuk</button>
+          </div>
+        </div>        
+
         <nav>
           <ul>
             <div class="menu-container">
@@ -213,6 +223,18 @@
   <footer>
     <div class="container">
       <p>© 2025 LIXXSHOP.MY.ID — All Rights Reserved.</p>
+
+      <script>
+        function closePopup() {
+          const popup = document.getElementById('welcome-popup');
+          popup.classList.remove('show');
+          popup.classList.add('hide');
+          setTimeout(() => {
+            popup.style.display = 'none';
+          }, 500); // tunggu sampai transisi selesai
+        }
+      </script>      
+      
     </div>
   </footer>
   
