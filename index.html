@@ -7,6 +7,8 @@
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+<canvas id="snow-canvas"></canvas>
 </head>
 <body>
   <header>
@@ -14,7 +16,24 @@
       <h1 class="logo">LIXXSHOP.MY.ID</h1>
       <div class="header-actions">
 
-       
+       <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+
+
+      <a href="https://wa.me/601156973637" class="floating-wa" target="_blank">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+<div class="produk-label">🔥 Baru</div>
+
+
+
+<audio id="bg-music" src="music/karnakamu.mp3.mp3" loop preload="auto"></audio>
+<button onclick="document.getElementById('bg-music').play()" class="btn-mode" style="top: 170px;">🎵</button>
+
+
         <div id="welcome-popup" class="popup show">
           <div class="popup-content">
             <h2>Selamat Datang di Website <span style="color:#7c3aed">Lixx Shop!</span></h2>
@@ -22,6 +41,103 @@
             <button onclick="closePopup()">Masuk</button>
           </div>
         </div>        
+
+
+</script>
+
+<audio id="click-sound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_35634c77e5.mp3" preload="auto"></audio>
+<script>
+  const clickSound = document.getElementById("click-sound");
+  document.querySelectorAll('button, a.btn, .produk-btn').forEach(btn => {
+    btn.addEventListener("click", () => clickSound.play());
+  });
+</script>
+
+        <div id="notif-order" class="notif-order">📦 Seseorang baru saja membeli Jasa Pembuatan Website Medium !</div>
+
+<div id="notif-order" class="notif-order">📦 Seseorang baru saja membeli Jasa Pembuatan Website Medium !</div>
+
+<style>
+.notif-order {
+  position: fixed;
+  bottom: 80px;
+  left: 20px;
+  background: #1f1b2e;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #7c3aed;
+  z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.8s ease;
+}
+
+.notif-order.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+</style>
+
+
+<script>
+const fakeOrders = [
+  "📦 Seseorang Baru Saja Membeli Jasa Pembuatan Website Medium !",
+  "💻 Pesanan Website Medium sedang diproses...",
+  "🛒 Jasa Website 1 (Medium) baru saja dibeli!",
+  "📡 Panel 5GB RAM dibeli oleh user dari Bandung!"
+];
+
+let idx = 0;
+setInterval(() => {
+  document.getElementById("testimoni").innerText = testimonials[idx];
+  idx = (idx + 1) % testimonials.length;
+}, 7000);
+
+function showFakeOrder() {
+  const notif = document.getElementById("notif-order");
+  notif.innerText = fakeOrders[Math.floor(Math.random() * fakeOrders.length)];
+  notif.classList.add("show");
+
+  setTimeout(() => {
+    notif.classList.remove("show");
+  }, 5000); // hilang setelah 5 detik
+}
+
+setInterval(showFakeOrder, 15000); // muncul setiap 15 detik
+</script>
+
+        <div id="preloader">
+  <div class="spinner"></div>
+</div>
+
+<script>
+  window.addEventListener("load", function () {
+    const preloader = document.getElementById("preloader");
+    preloader.style.opacity = "0";
+    preloader.style.transition = "opacity 0.5s ease";
+    setTimeout(() => preloader.style.display = "none", 500);
+  });
+</script>
+
+
+
+
+      <a href="https://wa.me/601156973637" class="floating-wa" target="_blank">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+<script>
+
+  const toggleBtn = document.getElementById("toggle-mode");
+  toggleBtn.onclick = () => {
+    document.body.classList.toggle("light-mode");
+    toggleBtn.innerText = document.body.classList.contains("light-mode") ? "☀️" : "🌙";
+  };
+</script>
+
+
+
 
         <nav>
           <ul>
@@ -36,9 +152,11 @@
     </div>
   </header>
 
+  <div class="panel-buttons" data-aos="fade-up">
+
   <section class="hero">
     <div class="container">
-      <h2>Panel & VPS Termurah Indonesia</h2>
+       <h2>Panel & VPS Termurah Di Indonesia</h2>
       <p>Layanan cepat, aman, dan terpercaya. Support 24 jam non-stop!</p>
       <a href="https://wa.me/601156973637" class="btn">Pesan Sekarang</a>
     </div>
@@ -50,7 +168,10 @@
       <div class="produk-grid">
       </div>
 
-      <section class="panel-list">
+      <div class="trust-badge">
+  <i class="fas fa-shield-alt"></i> Penjual Terpercaya · ★★★★★ (4.9/5)
+</div>
+
         <div class="container">
           <h2><i class="fas fa-server"></i> Paket Panel Pterodactyl</h2>
           <div class="panel-buttons">
@@ -212,13 +333,14 @@
   </div>
   </section>
 
-  <section id="kontak" class="kontak">
-    <div class="container">
-      <h2>Hubungi Kami</h2>
-      <p>Chat langsung via WhatsApp:</p>
-      <a href="https://wa.me/601156973637" class="btn">Klik untuk Chat</a>
-    </div>
-  </section>
+<section id="kontak" class="kontak">
+  <div class="container kontak-box">
+    <h2>Hubungi Kami</h2>
+    <p>Chat langsung via WhatsApp:</p>
+    <a href="https://wa.me/601156973637" class="btn">Klik untuk Chat</a>
+  </div>
+</section>
+
 
   <footer>
     <div class="container">
@@ -233,6 +355,7 @@
             popup.style.display = 'none';
           }, 500); // tunggu sampai transisi selesai
         }
+
       </script>      
       
     </div>

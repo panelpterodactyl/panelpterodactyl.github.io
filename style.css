@@ -178,9 +178,7 @@ body.dark .fitur li {
   text-align: center;
 }
 
-.kontak h2 {
-  margin-bottom: 20sspx;
-}
+
 
   footer {
     background-color: #0d1117;
@@ -531,26 +529,6 @@ html {
 
 /*tes100kontak*/
 
-.kontak {
-  
-    box-shadow: 0 0 15px #c084fc;
-    background-color: rgba(0, 0, 0, 0.6);
-    border-left: 5px solid #c084fc;
-    width: 450px;
-    padding: 15px 20px;
-    font-size: 16px;
-    border-radius: 20px;
-    border: 2px solid #c084fc;
-    background: transparent;
-    color: #fff;
-    max-width: 700px;
-    text-align: left;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border-radius: 10px;
-  
-}
-
 
 /*popup*/
 
@@ -608,3 +586,143 @@ html {
   from { transform: scale(0.8); }
   to { transform: scale(1); }
 }
+
+/*tombol*/
+
+.floating-wa {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #25d366;
+  color: white;
+  font-size: 24px;
+  padding: 12px 15px;
+  border-radius: 50%;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+  z-index: 999;
+}
+
+.kontak {
+  padding: 40px 20px;
+  background-color: #000;
+}
+
+.kontak-box {
+  max-width: 500px;
+  margin: 0 auto;
+  background: #111;
+  padding: 30px;
+  border: 2px solid #a78bfa;
+  border-radius: 15px;
+  box-shadow: 0 0 15px #7c3aed;
+  color: white;
+  text-align: center;
+}
+
+
+.btn:hover, .produk-btn:hover {
+  box-shadow: 0 0 20px #7c3aed, 0 0 40px #7c3aed;
+  transform: scale(1.03);
+  transition: 0.3s ease;
+}
+
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Spinner animasi */
+.spinner {
+  width: 60px;
+  height: 60px;
+  border: 6px solid #7c3aed;
+  border-top: 6px solid transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* Animasi berputar */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+body.neon-mode .produk-btn,
+body.neon-mode .btn {
+  box-shadow: 0 0 15px #a78bfa, 0 0 25px #7c3aed;
+  transition: box-shadow 0.3s ease;
+}
+
+body.neon-mode h2,
+body.neon-mode h3 {
+  text-shadow: 0 0 5px #7c3aed;
+}
+
+.promo-timer {
+  text-align: center;
+  color: #fff;
+  margin-top: 20px;
+  font-size: 18px;
+  background: #7c3aed;
+  padding: 10px;
+  border-radius: 8px;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.produk-label {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: #ef4444;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-size: 12px;
+}
+
+.produk-btn {
+  position: relative;
+}
+
+
+/*rapikan*/
+
+.produk-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px #7c3aed;
+  transition: 0.3s ease;
+}
+
+.trust-badge {
+  text-align: center;
+  margin: 20px 0;
+  background: linear-gradient(90deg, #7c3aed, #4c1d95);
+  color: #fff;
+  padding: 10px;
+  border-radius: 15px;
+  font-weight: bold;
+  box-shadow: 0 0 12px #7c3aed;
+}
+
+
+#snow-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
