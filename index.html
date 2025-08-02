@@ -1,365 +1,2545 @@
-<!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="transition-colors duration-300">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>LIXXSHOP.MY.ID</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-<canvas id="snow-canvas"></canvas>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <title>LIXX STORE - Top Up Robux Termurah</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    rel="stylesheet"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    :root {
+      --marquee-speed: 20s;
+      --accent-color: #00ff88;
+      --accent-color-dark: #00cc6a;
+      --bg-dark: #0a1e0a;
+      --bg-light: #ffffff;
+      --text-dark: #0a1e0a;
+      --text-light: #1a1a1a;
+      --shadow-accent: 0 0 12px var(--accent-color);
+      --shadow-accent-light: 0 0 20px var(--accent-color);
+    }
+    html,
+    body {
+      font-family: "Inter", sans-serif;
+      margin: 0;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    body {
+      background-color: var(--bg-dark);
+      color: var(--accent-color);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    /* Light mode overrides */
+    html.light {
+      --accent-color: #00ff88;
+      --accent-color-dark: #00cc6a;
+      --bg-dark: #ffffff;
+      --bg-light: #ffffff;
+      --text-dark: #1a1a1a;
+      --text-light: #1a1a1a;
+      --shadow-accent: 0 0 12px var(--accent-color);
+      --shadow-accent-light: 0 0 20px var(--accent-color);
+      background-color: var(--bg-light);
+      color: var(--text-light);
+    }
+    /* Scrollbar for chat */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background-color: var(--accent-color);
+      border-radius: 10px;
+    }
+    /* Chat bubble styles */
+    .chat-bubble {
+      max-width: 80%;
+      padding: 0.75rem 1rem;
+      border-radius: 1rem;
+      margin-bottom: 0.5rem;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+      box-shadow: var(--shadow-accent);
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+    .chat-user {
+      background-color: var(--accent-color);
+      color: var(--text-dark);
+      border-bottom-right-radius: 0;
+      align-self: flex-end;
+      box-shadow: var(--shadow-accent-light);
+      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+    }
+    .chat-user:hover,
+    .chat-user:focus {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px var(--accent-color);
+      outline: none;
+    }
+    .chat-bot {
+      background-color: #003311;
+      color: var(--accent-color);
+      border-bottom-left-radius: 0;
+      align-self: flex-start;
+      box-shadow: var(--shadow-accent);
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+    }
+    html.light .chat-bot {
+      background-color: #d9f7d6;
+      color: var(--text-dark);
+      box-shadow: 0 0 10px var(--accent-color);
+    }
+    /* Smooth input number arrows removal for better UI */
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    input[type="number"] {
+      -moz-appearance: textfield;
+    }
+    /* Payment method hover effect */
+    .payment-method:hover,
+    .payment-method:focus {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(0, 255, 136, 0.6);
+      outline: none;
+      transition: all 0.3s ease-in-out;
+    }
+    .payment-method {
+      transition: all 0.3s ease-in-out;
+      box-shadow: var(--shadow-accent);
+      cursor: pointer;
+      user-select: none;
+      min-width: 44px;
+      min-height: 44px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem 1.5rem;
+      border-radius: 1rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      background-color: var(--accent-color);
+      user-select: none;
+    }
+    html.light .payment-method {
+      color: var(--text-dark);
+      background-color: var(--accent-color);
+    }
+    /* Navbar mobile menu animation */
+    #mobileMenu {
+      transition: max-height 0.3s ease;
+      overflow: hidden;
+    }
+    /* Hero image animation */
+    @keyframes float {
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-15px);
+      }
+    }
+    .hero-img-animated {
+      animation: float 6s ease-in-out infinite;
+      filter: drop-shadow(0 0 6px var(--accent-color));
+    }
+    /* Button pulse effect */
+    .btn-pulse {
+      animation: pulse 2.5s infinite;
+      box-shadow: var(--shadow-accent);
+      transition: box-shadow 0.3s ease-in-out;
+    }
+    .btn-pulse:hover,
+    .btn-pulse:focus {
+      box-shadow: var(--shadow-accent-light);
+      outline: none;
+    }
+    @keyframes pulse {
+      0%,
+      100% {
+        box-shadow: 0 0 0 0 rgba(0, 255, 136, 0.7);
+      }
+      50% {
+        box-shadow: 0 0 15px 8px rgba(0, 255, 136, 0);
+      }
+    }
+    /* Tab active style */
+    .tab-btn[aria-selected="true"] {
+      background-color: var(--accent-color);
+      box-shadow: 0 4px 12px rgba(0, 255, 136, 0.6);
+      color: var(--text-dark);
+      transform: scale(1.05);
+      transition: all 0.3s ease-in-out;
+      outline: none;
+    }
+    .tab-btn {
+      transition: all 0.3s ease-in-out;
+      box-shadow: var(--shadow-accent);
+      user-select: none;
+      min-width: 44px;
+      min-height: 44px;
+      padding: 0.75rem 1.5rem;
+      border-radius: 1rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      background-color: var(--accent-color);
+      cursor: pointer;
+      user-select: none;
+    }
+    .tab-btn:hover,
+    .tab-btn:focus {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(0, 255, 136, 0.6);
+      outline: none;
+    }
+    /* Responsive chat input */
+    @media (max-width: 640px) {
+      #chatInput {
+        font-size: 1rem;
+      }
+    }
+    /* Additional styling for accessories and enhancements */
+    .accessory-icon {
+      color: var(--accent-color);
+      transition: color 0.3s ease;
+      margin-left: 0.5rem;
+      vertical-align: middle;
+    }
+    .accessory-icon:hover {
+      color: var(--accent-color-dark);
+    }
+    /* Gamepass list enhancements */
+    .gamepass-item {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #003311, #005522);
+      box-shadow: var(--shadow-accent);
+      border-radius: 1rem;
+      transition: all 0.3s ease-in-out;
+      cursor: default;
+      user-select: none;
+      min-height: 88px;
+      display: flex;
+      align-items: center;
+      padding: 1rem;
+    }
+    .gamepass-item:hover {
+      box-shadow: var(--shadow-accent-light);
+      transform: scale(1.05);
+    }
+    .gamepass-item::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #004422, #007733);
+      opacity: 0.3;
+      z-index: 0;
+      transition: opacity 0.3s ease;
+      border-radius: 1rem;
+    }
+    .gamepass-item:hover::before {
+      opacity: 0.6;
+    }
+    .gamepass-content {
+      position: relative;
+      z-index: 10;
+      color: #b3ffcc;
+      flex: 1;
+    }
+    /* Payment method icons scaling */
+    .payment-method img {
+      transition: transform 0.3s ease-in-out;
+      max-height: 64px;
+      max-width: 64px;
+      object-fit: contain;
+      margin-bottom: 0.5rem;
+    }
+    .payment-method:hover img,
+    .payment-method:focus img {
+      transform: scale(1.1);
+      outline: none;
+    }
+    /* Footer icons hover */
+    footer a:hover i,
+    footer a:focus i {
+      color: var(--accent-color);
+      outline: none;
+      transition: color 0.3s ease-in-out;
+    }
+    /* Sticky navbar shadow on scroll */
+    nav.sticky-shadow {
+      box-shadow: 0 4px 12px var(--accent-color);
+      transition: box-shadow 0.3s ease-in-out;
+    }
+    /* Fade in + slide up animation */
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .fade-in {
+      opacity: 0;
+      animation-fill-mode: forwards;
+      animation-name: fadeInUp;
+      animation-duration: 400ms;
+      animation-timing-function: ease-in-out;
+      animation-delay: 0.1s;
+    }
+    /* Robux package cards grid */
+    #robuxPackages {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.5rem;
+      max-width: 5xl;
+      margin: 0 auto 3rem auto;
+    }
+    @media (max-width: 1024px) {
+      #robuxPackages {
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      }
+    }
+    @media (max-width: 768px) {
+      #robuxPackages {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      }
+    }
+    @media (max-width: 480px) {
+      #robuxPackages {
+        grid-template-columns: 1fr;
+      }
+    }
+    .package-card {
+      background: #003311;
+      border-radius: 1rem;
+      padding: 1.5rem 1.25rem 2rem 1.25rem;
+      box-shadow: var(--shadow-accent);
+      text-align: center;
+      cursor: pointer;
+      position: relative;
+      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+      user-select: none;
+      color: #b3ffcc;
+      min-height: 220px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-width: 44px;
+      min-height: 44px;
+    }
+    .package-card:hover,
+    .package-card:focus,
+    .package-card.selected {
+      transform: scale(1.05);
+      box-shadow: var(--shadow-accent-light);
+      outline: none;
+      z-index: 10;
+    }
+    .package-card .badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: var(--accent-color);
+      color: var(--text-dark);
+      font-weight: 700;
+      font-size: 0.75rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 9999px;
+      box-shadow: var(--shadow-accent-light);
+      user-select: none;
+    }
+    .package-card .robux-icon {
+      font-size: 2.5rem;
+      color: var(--accent-color);
+      margin-bottom: 0.5rem;
+    }
+    .package-card h4 {
+      font-weight: 700;
+      font-size: 1.25rem;
+      margin-bottom: 0.25rem;
+      color: var(--accent-color);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .package-card .price {
+      font-weight: 600;
+      font-size: 1.125rem;
+      color: #b3ffcc;
+      margin-bottom: 0.5rem;
+    }
+    .package-card .stars {
+      color: #aaff88;
+      margin-bottom: 1rem;
+    }
+    /* Buy Now button with shimmer glow */
+    .buy-now-btn {
+      position: relative;
+      display: inline-block;
+      background: var(--accent-color);
+      color: var(--text-dark);
+      font-weight: 700;
+      padding: 0.6rem 1.5rem;
+      border-radius: 9999px;
+      box-shadow: var(--shadow-accent-light);
+      overflow: hidden;
+      transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out,
+        transform 0.3s ease-in-out;
+      user-select: none;
+      cursor: pointer;
+      min-width: 44px;
+      min-height: 44px;
+      user-select: none;
+    }
+    .buy-now-btn:hover,
+    .buy-now-btn:focus {
+      background: var(--accent-color-dark);
+      box-shadow: var(--shadow-accent-light);
+      outline: none;
+      transform: scale(1.05);
+    }
+    .buy-now-btn::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -75%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(
+        120deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.4) 50%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      transform: skewX(-25deg);
+      transition: left 0.5s ease-in-out;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .buy-now-btn:hover::after,
+    .buy-now-btn:focus::after {
+      left: 125%;
+      transition: left 0.75s ease-in-out;
+    }
+    /* Toast container */
+    #toastContainer {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      max-width: 320px;
+      pointer-events: none;
+    }
+    .toast {
+      background: rgba(0, 0, 0, 0.8);
+      color: var(--accent-color);
+      padding: 0.75rem 1rem;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      box-shadow: var(--shadow-accent-light);
+      opacity: 0;
+      animation: slideIn 0.4s forwards, fadeOut 0.4s 3.6s forwards;
+      user-select: none;
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      pointer-events: auto;
+    }
+    .toast.success {
+      background: #004d22;
+      color: var(--accent-color);
+      box-shadow: 0 0 15px var(--accent-color);
+    }
+    .toast.error {
+      background: #330000;
+      color: #ff4444;
+      box-shadow: 0 0 15px #ff4444cc;
+    }
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateX(100%);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+        transform: translateX(100%);
+      }
+    }
+    /* Loader spinner */
+    .loader {
+      border: 3px solid #004d22;
+      border-top: 3px solid var(--accent-color);
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
+      animation: spin 1s linear infinite;
+      display: inline-block;
+      vertical-align: middle;
+      margin-left: 0.5rem;
+    }
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+    /* Username input & copy button container */
+    #usernameContainer {
+      position: relative;
+      max-width: 320px;
+      margin: 0 auto 1.5rem auto;
+    }
+    #usernameInput {
+      width: 100%;
+      padding-right: 3.5rem;
+      border: 2px solid #004d22;
+      border-radius: 0.75rem;
+      padding-left: 1rem;
+      padding-top: 0.75rem;
+      padding-bottom: 0.75rem;
+      font-size: 1rem;
+      background-color: #002a0d;
+      color: #b3ffcc;
+      transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+      min-height: 44px;
+    }
+    html.light #usernameInput {
+      background-color: #e6fff0;
+      color: var(--text-dark);
+      border-color: #00ff88;
+    }
+    #usernameInput::placeholder {
+      color: #66ffb3;
+      opacity: 0.7;
+    }
+    #usernameInput:focus {
+      outline: none;
+      border-color: var(--accent-color);
+      box-shadow: var(--shadow-accent-light);
+      background-color: #003311;
+      color: var(--accent-color);
+    }
+    html.light #usernameInput:focus {
+      background-color: #d9f7d6;
+      color: var(--text-dark);
+    }
+    #copyUsernameBtn {
+      position: absolute;
+      top: 50%;
+      right: 0.5rem;
+      transform: translateY(-50%);
+      background: var(--accent-color);
+      border: none;
+      color: var(--text-dark);
+      padding: 0.35rem 0.75rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.875rem;
+      transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+      user-select: none;
+      box-shadow: var(--shadow-accent-light);
+      min-width: 44px;
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #copyUsernameBtn:hover,
+    #copyUsernameBtn:focus {
+      background: var(--accent-color-dark);
+      box-shadow: 0 0 15px var(--accent-color);
+      outline: none;
+    }
+    /* Price includes service fees label */
+    #priceNote {
+      font-size: 0.875rem;
+      color: var(--accent-color);
+      font-style: italic;
+      margin-top: 0.25rem;
+      user-select: none;
+    }
+    /* New badge promo style */
+    .badge-promo {
+      background: var(--accent-color);
+      color: var(--text-dark);
+      padding: 8px 12px;
+      border-radius: 8px;
+      display: inline-block;
+      font-weight: 600;
+      animation: pulse 1.2s ease-in-out infinite;
+      user-select: none;
+      box-shadow: var(--shadow-accent-light);
+    }
+    /* Price display fade */
+    #harga-final {
+      transition: opacity 0.3s ease-in-out;
+      color: var(--accent-color);
+      font-weight: 700;
+      font-size: 1.75rem;
+      user-select: none;
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    /* Checkout button style */
+    .cta-btn {
+      background: linear-gradient(90deg, var(--accent-color), var(--accent-color-dark));
+      color: var(--text-dark);
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+      font-weight: 700;
+      cursor: pointer;
+      user-select: none;
+      margin-top: 1rem;
+      width: 100%;
+      max-width: 320px;
+      display: block;
+      text-align: center;
+      box-shadow: var(--shadow-accent-light);
+      min-height: 44px;
+      line-height: 1.2;
+    }
+    .cta-btn:hover:not(:disabled),
+    .cta-btn:focus:not(:disabled) {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2), 0 0 25px var(--accent-color);
+      outline: none;
+    }
+    .cta-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+    /* Payment info container */
+    .payment-info {
+      margin-top: 1rem;
+      text-align: center;
+      color: #66ffb3;
+      font-size: 0.875rem;
+      user-select: none;
+    }
+    .payment-info img {
+      vertical-align: middle;
+      margin: 0 8px 4px 8px;
+      transition: transform 0.3s ease-in-out;
+      cursor: default;
+      filter: drop-shadow(0 0 3px var(--accent-color));
+      max-height: 32px;
+      max-width: 32px;
+      object-fit: contain;
+    }
+    .payment-info img:hover,
+    .payment-info img:focus {
+      transform: scale(1.1);
+      outline: none;
+    }
+    /* Responsive adjustments */
+    @media (max-width: 1024px) {
+      .container {
+        flex-direction: column;
+      }
+      .badge-promo {
+        font-size: 0.9rem;
+      }
+    }
+    @media (max-width: 768px) {
+      #usernameContainer,
+      #topupSection section.bg-[#003311] {
+        max-width: 100%;
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+      #robuxPackages {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      }
+    }
+    @media (max-width: 480px) {
+      #robuxPackages {
+        grid-template-columns: 1fr;
+      }
+      .payment-method {
+        min-width: 44px;
+        min-height: 44px;
+        padding: 0.75rem 1rem;
+      }
+      .tab-btn {
+        min-width: 44px;
+        min-height: 44px;
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+      }
+    }
+    /* Estimasi Kedatangan style */
+    #estimasi-kedatangan {
+      color: var(--accent-color);
+      font-weight: 600;
+      font-size: 1rem;
+      user-select: none;
+      margin-left: 0.75rem;
+      white-space: nowrap;
+      text-shadow: 0 0 6px var(--accent-color);
+      min-width: 160px;
+      text-align: left;
+    }
+    /* Input error message */
+    #inputError {
+      color: #ff4444;
+      font-weight: 700;
+      user-select: none;
+      margin-top: 0.25rem;
+      min-height: 22px;
+    }
+    /* Marquee footer text */
+    #footerMarquee {
+      color: var(--accent-color);
+      font-weight: 700;
+      font-size: 1rem;
+      text-shadow:
+        0 0 5px var(--accent-color),
+        0 0 10px var(--accent-color),
+        0 0 20px var(--accent-color),
+        0 0 40px var(--accent-color);
+      white-space: nowrap;
+      overflow: hidden;
+      box-sizing: border-box;
+      user-select: none;
+      cursor: default;
+      width: 100%;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      z-index: 9998;
+      background: var(--bg-dark);
+      background: linear-gradient(to top, var(--bg-dark)cc, transparent);
+      transition: background-color 0.3s ease;
+    }
+    html.light #footerMarquee {
+      background: var(--bg-light);
+      background: linear-gradient(to top, var(--bg-light)cc, transparent);
+      color: var(--accent-color);
+      text-shadow:
+        0 0 5px var(--accent-color),
+        0 0 10px var(--accent-color),
+        0 0 20px var(--accent-color),
+        0 0 40px var(--accent-color);
+    }
+    #footerMarquee span {
+      display: inline-block;
+      padding-left: 100%;
+      animation: marquee var(--marquee-speed) linear infinite;
+      will-change: transform;
+    }
+    #footerMarquee:hover span,
+    #footerMarquee:focus span {
+      animation-play-state: paused;
+      outline: none;
+    }
+    @keyframes marquee {
+      0% {
+        transform: translateX(0%);
+      }
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+    /* Fixed header with backdrop blur after scroll 80px */
+    nav#navbar {
+      position: relative;
+      background-color: rgba(0, 42, 13, 0.85);
+      backdrop-filter: none;
+      transition: backdrop-filter 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+      z-index: 9999;
+    }
+    nav#navbar.scrolled {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 12px rgba(0, 255, 136, 0.5);
+      background-color: rgba(0, 42, 13, 0.95);
+    }
+    html.light nav#navbar {
+      background-color: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 4px 12px rgba(0, 255, 136, 0.3);
+    }
+    /* Smooth transitions for all buttons, links, tabs, toggles */
+    a,
+    button,
+    input,
+    .tab-btn,
+    .payment-method,
+    .buy-now-btn,
+    #copyUsernameBtn {
+      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out,
+        background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+      -webkit-tap-highlight-color: transparent;
+    }
+    /* Accessory icons for packages */
+    .package-accessory {
+      margin-left: 0.5rem;
+      vertical-align: middle;
+      filter: drop-shadow(0 0 3px var(--accent-color));
+      transition: transform 0.3s ease-in-out;
+      cursor: default;
+      color: var(--accent-color);
+    }
+    .package-accessory:hover,
+    .package-accessory:focus {
+      transform: scale(1.2);
+      color: var(--accent-color-dark);
+      outline: none;
+    }
+    /* Flash Sale Teaser */
+    #flashSaleTeaser {
+      position: relative;
+      margin: 2rem auto 3rem auto;
+      max-width: 5xl;
+      border-radius: 1rem;
+      overflow: hidden;
+      cursor: default;
+      user-select: none;
+      box-shadow: var(--shadow-accent-light);
+      background: rgba(0, 255, 136, 0.1);
+      backdrop-filter: blur(12px);
+      padding: 1rem 2rem;
+      text-align: center;
+      color: var(--accent-color);
+      font-weight: 700;
+      font-size: 1.25rem;
+      animation: glowText 3s ease-in-out infinite alternate;
+      z-index: 10;
+    }
+    @keyframes glowText {
+      0% {
+        text-shadow:
+          0 0 5px var(--accent-color),
+          0 0 10px var(--accent-color),
+          0 0 20px var(--accent-color),
+          0 0 40px var(--accent-color);
+        color: var(--accent-color);
+      }
+      100% {
+        text-shadow:
+          0 0 15px var(--accent-color-dark),
+          0 0 30px var(--accent-color-dark),
+          0 0 40px var(--accent-color-dark),
+          0 0 60px var(--accent-color-dark);
+        color: var(--accent-color-dark);
+      }
+    }
+    /* Tabs content container */
+    .tab-content {
+      transition: opacity 0.4s ease-in-out;
+    }
+    /* Instagram embed container */
+    #bigSaleTestimoniEmbed {
+      max-width: 100%;
+      height: 480px;
+      border: none;
+      border-radius: 1rem;
+      box-shadow: var(--shadow-accent-light);
+      margin-top: 1rem;
+      width: 100%;
+    }
+    /* Theme toggle switch */
+    #themeToggleContainer {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      user-select: none;
+    }
+    #themeToggleLabel {
+      margin-left: 0.5rem;
+      font-weight: 600;
+      color: var(--accent-color);
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    #themeToggle {
+      width: 48px;
+      height: 24px;
+      position: relative;
+      appearance: none;
+      background: #004d22;
+      outline: none;
+      border-radius: 9999px;
+      box-shadow: var(--shadow-accent);
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    #themeToggle:checked {
+      background: var(--accent-color);
+      box-shadow: var(--shadow-accent-light);
+    }
+    #themeToggle::before {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 20px;
+      height: 20px;
+      border-radius: 9999px;
+      background: var(--bg-dark);
+      transition: transform 0.3s ease;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    }
+    #themeToggle:checked::before {
+      transform: translateX(24px);
+      background: var(--bg-light);
+      box-shadow: 0 0 8px var(--accent-color);
+    }
+    /* AI Assistant Widget */
+    #aiAssistantWidget {
+      position: fixed;
+      bottom: 4rem;
+      right: 1rem;
+      width: 320px;
+      max-width: 90vw;
+      background: var(--bg-dark);
+      border-radius: 1rem;
+      box-shadow: var(--shadow-accent-light);
+      color: var(--accent-color);
+      font-family: "Inter", sans-serif;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      user-select: none;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      z-index: 10000;
+    }
+    html.light #aiAssistantWidget {
+      background: var(--bg-light);
+      color: var(--text-dark);
+      box-shadow: 0 0 20px var(--accent-color);
+    }
+    #aiAssistantHeader {
+      background: var(--accent-color);
+      color: var(--text-dark);
+      padding: 0.75rem 1rem;
+      font-weight: 700;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      user-select: none;
+    }
+    #aiAssistantHeader:hover,
+    #aiAssistantHeader:focus {
+      background: var(--accent-color-dark);
+      outline: none;
+    }
+    #aiAssistantContent {
+      background: var(--bg-dark);
+      color: var(--accent-color);
+      height: 360px;
+      overflow-y: auto;
+      padding: 1rem;
+      display: none;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    html.light #aiAssistantContent {
+      background: var(--bg-light);
+      color: var(--text-dark);
+    }
+    #aiAssistantContent.visible {
+      display: flex;
+    }
+    #aiAssistantInputContainer {
+      display: flex;
+      margin-top: auto;
+      gap: 0.5rem;
+    }
+    #aiAssistantInput {
+      flex-grow: 1;
+      border-radius: 0.75rem;
+      border: 2px solid #004d22;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      background-color: #002a0d;
+      color: var(--accent-color);
+      transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+    html.light #aiAssistantInput {
+      background-color: #e6fff0;
+      color: var(--text-dark);
+      border-color: var(--accent-color);
+    }
+    #aiAssistantInput:focus {
+      outline: none;
+      border-color: var(--accent-color);
+      box-shadow: var(--shadow-accent-light);
+      background-color: #003311;
+      color: var(--accent-color);
+    }
+    html.light #aiAssistantInput:focus {
+      background-color: #d9f7d6;
+      color: var(--text-dark);
+    }
+    #aiAssistantSendBtn {
+      background: var(--accent-color);
+      border: none;
+      border-radius: 0.75rem;
+      padding: 0 1rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      cursor: pointer;
+      box-shadow: var(--shadow-accent-light);
+      transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+      user-select: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #aiAssistantSendBtn:hover,
+    #aiAssistantSendBtn:focus {
+      background: var(--accent-color-dark);
+      box-shadow: 0 0 20px var(--accent-color);
+      outline: none;
+    }
+    #aiAssistantMessages {
+      flex-grow: 1;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-bottom: 0.5rem;
+    }
+    .ai-message {
+      padding: 0.75rem 1rem;
+      border-radius: 1rem;
+      max-width: 80%;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+      box-shadow: var(--shadow-accent);
+      font-size: 0.9rem;
+      line-height: 1.3;
+    }
+    .ai-message.user {
+      background-color: var(--accent-color);
+      color: var(--text-dark);
+      align-self: flex-end;
+      border-bottom-right-radius: 0;
+      box-shadow: var(--shadow-accent-light);
+    }
+    .ai-message.bot {
+      background-color: #003311;
+      color: var(--accent-color);
+      align-self: flex-start;
+      border-bottom-left-radius: 0;
+    }
+    html.light .ai-message.bot {
+      background-color: #d9f7d6;
+      color: var(--text-dark);
+    }
+    /* Responsive AI Assistant */
+    @media (max-width: 480px) {
+      #aiAssistantWidget {
+        width: 90vw;
+        bottom: 3rem;
+        right: 5%;
+      }
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <div class="container">
-      <h1 class="logo">LIXXSHOP.MY.ID</h1>
-      <div class="header-actions">
 
-       <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-  AOS.init();
-</script>
-
-
-      <a href="https://wa.me/601156973637" class="floating-wa" target="_blank">
-  <i class="fab fa-whatsapp"></i>
-</a>
-
-<div class="produk-label">🔥 Baru</div>
-
-
-
-<audio id="bg-music" src="music/karnakamu.mp3.mp3" loop preload="auto"></audio>
-<button onclick="document.getElementById('bg-music').play()" class="btn-mode" style="top: 170px;">🎵</button>
-
-
-        <div id="welcome-popup" class="popup show">
-          <div class="popup-content">
-            <h2>Selamat Datang di Website <span style="color:#7c3aed">Lixx Shop!</span></h2>
-            <p>Kami siap membantu kebutuhan panel & VPS kamu 😊</p>
-            <button onclick="closePopup()">Masuk</button>
-          </div>
-        </div>        
-
-
-</script>
-
-<audio id="click-sound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_35634c77e5.mp3" preload="auto"></audio>
-<script>
-  const clickSound = document.getElementById("click-sound");
-  document.querySelectorAll('button, a.btn, .produk-btn').forEach(btn => {
-    btn.addEventListener("click", () => clickSound.play());
-  });
-</script>
-
-        <div id="notif-order" class="notif-order">📦 Seseorang baru saja membeli Jasa Pembuatan Website Medium !</div>
-
-<div id="notif-order" class="notif-order">📦 Seseorang baru saja membeli Jasa Pembuatan Website Medium !</div>
-
-<style>
-.notif-order {
-  position: fixed;
-  bottom: 80px;
-  left: 20px;
-  background: #1f1b2e;
-  color: white;
-  padding: 10px 15px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px #7c3aed;
-  z-index: 999;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.8s ease;
-}
-
-.notif-order.show {
-  opacity: 1;
-  pointer-events: auto;
-}
-</style>
-
-
-<script>
-const fakeOrders = [
-  "📦 Seseorang Baru Saja Membeli Jasa Pembuatan Website Medium !",
-  "💻 Pesanan Website Medium sedang diproses...",
-  "🛒 Jasa Website 1 (Medium) baru saja dibeli!",
-  "📡 Panel 5GB RAM dibeli oleh user dari Bandung!"
-];
-
-let idx = 0;
-setInterval(() => {
-  document.getElementById("testimoni").innerText = testimonials[idx];
-  idx = (idx + 1) % testimonials.length;
-}, 7000);
-
-function showFakeOrder() {
-  const notif = document.getElementById("notif-order");
-  notif.innerText = fakeOrders[Math.floor(Math.random() * fakeOrders.length)];
-  notif.classList.add("show");
-
-  setTimeout(() => {
-    notif.classList.remove("show");
-  }, 5000); // hilang setelah 5 detik
-}
-
-setInterval(showFakeOrder, 15000); // muncul setiap 15 detik
-</script>
-
-        <div id="preloader">
-  <div class="spinner"></div>
-</div>
-
-<script>
-  window.addEventListener("load", function () {
-    const preloader = document.getElementById("preloader");
-    preloader.style.opacity = "0";
-    preloader.style.transition = "opacity 0.5s ease";
-    setTimeout(() => preloader.style.display = "none", 500);
-  });
-</script>
-
-
-
-
-      <a href="https://wa.me/601156973637" class="floating-wa" target="_blank">
-  <i class="fab fa-whatsapp"></i>
-</a>
-
-<script>
-
-  const toggleBtn = document.getElementById("toggle-mode");
-  toggleBtn.onclick = () => {
-    document.body.classList.toggle("light-mode");
-    toggleBtn.innerText = document.body.classList.contains("light-mode") ? "☀️" : "🌙";
-  };
-</script>
-
-
-
-
-        <nav>
-          <ul>
-            <div class="menu-container">
-              <a href="#produk" class="menu-item">Produk</a>
-              <a href="#" class="menu-item">Layanan</a>
-              <a href="#kontak" class="menu-item">Kontak</a>
-            </div>
-
-            
-      </div>
+  <!-- Navbar -->
+  <nav
+    class="bg-[#002a0d] z-50"
+    id="navbar"
+    role="navigation"
+    aria-label="Primary navigation"
+  >
+    <div
+      class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center"
+    >
+      <a
+        class="flex items-center space-x-3 focus:outline-none focus:ring-2 focus:ring-[#00ff88]"
+        href="/"
+        tabindex="0"
+      >
+        <img
+          alt="Logo Roblox style letter R in bright green and black"
+          class="h-12 w-12 rounded-md shadow-md"
+          height="48"
+          loading="lazy"
+          src="https://storage.googleapis.com/a1aa/image/834e5a46-81cc-483a-0aa9-6f2899daf644.jpg"
+          width="48"
+        />
+        <span class="text-2xl font-extrabold text-[#00ff88] select-none"
+          >LIXX STORE</span
+        >
+      </a>
+      <ul
+        class="hidden md:flex space-x-8 font-semibold text-green-400"
+        role="menubar"
+      >
+        <li role="none">
+          <a
+            class="hover:text-[#00ff88] transition focus:outline-none focus:ring-2 focus:ring-[#00ff88] rounded"
+            href="/"
+            role="menuitem"
+            tabindex="-1"
+            >Beranda</a
+          >
+        </li>
+        <li role="none">
+          <a
+            class="text-[#00ff88] border-b-2 border-[#00ff88] pb-1 font-bold focus:outline-none focus:ring-2 focus:ring-[#00ff88] rounded"
+            href="/topup"
+            role="menuitem"
+            tabindex="-1"
+            >Top Up Robux</a
+          >
+        </li>
+        <li role="none">
+          <a
+            class="hover:text-[#00ff88] transition focus:outline-none focus:ring-2 focus:ring-[#00ff88] rounded"
+            href="#caraPembelian"
+            role="menuitem"
+            tabindex="-1"
+            >Cara Pembelian</a
+          >
+        </li>
+        <li role="none">
+          <a
+            class="hover:text-[#00ff88] transition focus:outline-none focus:ring-2 focus:ring-[#00ff88] rounded"
+            href="#testimoni"
+            role="menuitem"
+            tabindex="-1"
+            >Testimoni</a
+          >
+        </li>
+        <li role="none">
+          <a
+            class="hover:text-[#00ff88] transition focus:outline-none focus:ring-2 focus:ring-[#00ff88] rounded"
+            href="#kontak"
+            role="menuitem"
+            tabindex="-1"
+            >Kontak</a
+          >
+        </li>
+      </ul>
+      <button
+        aria-label="Toggle menu"
+        aria-expanded="false"
+        aria-controls="mobileMenu"
+        class="md:hidden text-[#00ff88] focus:outline-none focus:ring-2 focus:ring-[#00ff88] rounded p-2"
+        id="mobileMenuBtn"
+        type="button"
+      >
+        <i class="fas fa-bars fa-lg" aria-hidden="true"></i>
+      </button>
     </div>
+    <div
+      class="hidden md:hidden bg-[#002a0d] border-t border-green-700 px-6 py-4 space-y-3"
+      id="mobileMenu"
+    >
+      <a
+        class="block text-green-400 font-semibold hover:text-[#00ff88] focus:outline-none focus:ring-2 focus:ring-[#00ff88] rounded px-2 py-1"
+        href="/"
+        tabindex="0"
+        >Beranda</a
+      >
+      <a
+        class="block text-[#00ff88] font-bold border-l-4 border-[#00ff88] pl-3 focus:outline-none focus:ring-2 focus:ring-[#00ff88] rounded px-2 py-1"
+        href="/topup"
+        tabindex="0"
+        >Top Up Robux</a
+      >
+      <a
+        class="block text-green-400 font-semibold hover:text-[#00ff88] focus:outline-none focus:ring-2 focus:ring-[#00ff88] rounded px-2 py-1"
+        href="#caraPembelian"
+        tabindex="0"
+        >Cara Pembelian</a
+      >
+      <a
+        class="block text-green-400 font-semibold hover:text-[#00ff88] focus:outline-none focus:ring-2 focus:ring-[#00ff88] rounded px-2 py-1"
+        href="#testimoni"
+        tabindex="0"
+        >Testimoni</a
+      >
+      <a
+        class="block text-green-400 font-semibold hover:text-[#00ff88] focus:outline-none focus:ring-2 focus:ring-[#00ff88] rounded px-2 py-1"
+        href="#kontak"
+        tabindex="0"
+        >Kontak</a
+      >
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header
+    aria-label="Hero section with Roblox avatar and call to action"
+    class="bg-[#003311] py-16 px-6 text-center relative overflow-hidden"
+  >
+    <img
+      alt="Roblox avatar character wearing headset and gaming gear, smiling and holding Robux coins with green neon glow"
+      class="absolute top-0 right-0 opacity-25 max-w-xs hidden md:block hero-img-animated"
+      height="220"
+      loading="lazy"
+      src="https://storage.googleapis.com/a1aa/image/0c52e7c6-f10b-4ab2-8cac-d708334ba811.jpg"
+      width="220"
+    />
+    <h1
+      class="text-4xl md:text-5xl font-extrabold text-[#00ff88] mb-4 drop-shadow-[0_0_10px_#00ff88]"
+      tabindex="0"
+    >
+      Top Up Robux Termurah &amp; Terpercaya
+    </h1>
+    <p
+      class="text-lg md:text-xl text-green-300 max-w-3xl mx-auto mb-8 leading-relaxed"
+      tabindex="0"
+    >
+      Dapatkan Robux dengan harga terbaik dan proses cepat. Aman, mudah, dan
+      didukung oleh layanan pelanggan 24/7.
+    </p>
+    <a
+      class="inline-block bg-[#00ff88] hover:bg-[#00cc6a] text-[#0a1e0a] font-bold py-3 px-8 rounded-lg shadow-lg transition btn-pulse focus:outline-none focus:ring-4 focus:ring-[#00ff88]"
+      href="#topupSection"
+      tabindex="0"
+    >
+      Beli Robux Sekarang
+    </a>
   </header>
 
-  <div class="panel-buttons" data-aos="fade-up">
-
-  <section class="hero">
-    <div class="container">
-       <h2>Panel & VPS Termurah Di Indonesia</h2>
-      <p>Layanan cepat, aman, dan terpercaya. Support 24 jam non-stop!</p>
-      <a href="https://wa.me/601156973637" class="btn">Pesan Sekarang</a>
+  <!-- Main Content -->
+  <main class="flex-grow max-w-5xl mx-auto px-6 py-12" id="topupSection">
+    <!-- Promo Badge and Microcopy -->
+    <div class="text-center mb-4 fade-in">
+      <span class="badge-promo inline-block mb-2" role="alert" tabindex="0"
+        >🎉 PROMO TERBARU! Rp13.200/100 Robux — Nikmati harga terbaik tanpa
+        kompromi!</span
+      >
+      <p class="text-[#00ff88] font-semibold select-none" tabindex="0">
+        🔥 Harga tetap Rp13.200 per 100 Robux!
+      </p>
+      <p class="text-green-300 mt-1 mb-6 select-none" tabindex="0">
+        Stok terbatas setiap hari, jangan sampai kehabisan! Segera top up dan
+        rasakan keuntungannya.
+      </p>
     </div>
-  </section>
 
-  <section id="produk" class="produk">
-    <div class="container">
-      <h2>Produk Kami</h2>
-      <div class="produk-grid">
-      </div>
-
-      <div class="trust-badge">
-  <i class="fas fa-shield-alt"></i> Penjual Terpercaya · ★★★★★ (4.9/5)
-</div>
-
-        <div class="container">
-          <h2><i class="fas fa-server"></i> Paket Panel Pterodactyl</h2>
-          <div class="panel-buttons">
-            <button class="produk-btn">
-              <div class="droplet-spec"><i class="fas fa-server"></i> Panel 1GB RAM</div>
-              <div class="droplet-price">Rp5.000</div>
-            </button>
-            <button class="produk-btn">
-              <div class="droplet-spec"><i class="fas fa-server"></i> Panel 2GB RAM</div>
-              <div class="droplet-price">Rp10.000</div>
-            </button>
-            <button class="produk-btn">
-              <div class="droplet-spec"><i class="fas fa-server"></i> Panel 3GB RAM</div>
-              <div class="droplet-price">Rp15.000</div>
-            </button>
-            <button class="produk-btn">
-              <div class="droplet-spec"><i class="fas fa-server"></i> Panel 4GB RAM</div>
-              <div class="droplet-price">Rp20.000</div>
-            </button>
-            <button class="produk-btn">
-              <div class="droplet-spec"><i class="fas fa-server"></i> Panel 5GB RAM</div>
-              <div class="droplet-price">Rp25.000</div>
-            </button>
-          </div>
-        </div>
-      </section>
-
-      <section id="droplet-list" class="produk">
-        <div class="container">
-          <h2><i class="fas fa-cloud"></i> Akun DigitalOcean - Droplet Paket</h2>
-          <div class="droplet-buttons">
-            <a href="https://wa.me/601156973637?text=Halo%20saya%20ingin%20pesan%20Vps%201vCPU%20Dengan%20Spek%202GB%20RAM%202CORE%20SSD" target="_blank">
-              <button class="produk-btn">
-                <div class="droplet-spec"><i class="fas fa-cloud"></i> 1vCPU • 2GB RAM • 2 CORE SSD</div>
-                <div class="droplet-price">Rp20.000</div>
-              </button>
-            </a>
-            <a href="https://wa.me/601156973637?text=Halo%20saya%20ingin%20pesan%20Vps%201vCPU%20Dengan%20Spek%204GB%20RAM%204CORE%20SSD" target="_blank">
-              <button class="produk-btn">
-                <div class="droplet-spec"><i class="fas fa-cloud"></i> 1vCPU • 4GB RAM • 4CORE SSD</div>
-                <div class="droplet-price">Rp35.000</div>
-              </button>
-            </a>
-            <a href="https://wa.me/601156973637?text=Halo%20saya%20ingin%20pesan%20Vps%202vCPU%20Dengan%20Spek%206GB%20RAM%204CORE%20SSD" target="_blank">
-              <button class="produk-btn">
-                <div class="droplet-spec"><i class="fas fa-cloud"></i> 2vCPU • 6GB RAM • 4CORE SSD</div>
-                <div class="droplet-price">Rp55.000</div>
-              </button>
-            </a>
-            <a href="https://wa.me/601156973637?text=Halo%20saya%20ingin%20pesan%20Vps%202vCPU%20Dengan%20Spek%208GB%20RAM%204CORE%20SSD" target="_blank">
-              <button class="produk-btn">
-                <div class="droplet-spec"><i class="fas fa-cloud"></i> 2vCPU • 8GB RAM • 4CORE SSD</div>
-                <div class="droplet-price">Rp75.000</div>
-              </button>
-            </a>
-            <a href="https://wa.me/601156973637?text=Halo%20saya%20ingin%20pesan%20Vps%204vCPU%20Dengan%20Spek%2016GB%20RAM%204CORE%20SSD" target="_blank">
-              <button class="produk-btn">
-                <div class="droplet-spec"><i class="fas fa-cloud"></i> 4vCPU • 16GB RAM • 4CORE SSD</div>
-                <div class="droplet-price">Rp130.000</div>
-              </button>
-            </a>
-            <a href="https://wa.me/601156973637?text=Halo%20saya%20ingin%20pesan%20Vps%204vCPU%20Dengan%20Spek%2016GB%20RAM%208CORE%20SSD" target="_blank">
-              <button class="produk-btn">
-                <div class="droplet-spec"><i class="fas fa-cloud"></i> 4vCPU • 16GB RAM • 8CORE SSD</div>
-                <div class="droplet-price">Rp130.000</div>
-              </button>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <section class="install-panel">
-        <div class="container">
-          <h2><i class="fas fa-wrench"></i> Jasa Install Panel Pterodactyl</h2>
-          <div class="panel-buttons">
-            <a href="https://wa.me/601156973637?text=Halo%20saya%20ingin%20pesan%20Jasa%20Install%20Panel%20Pterodactyl" target="_blank">
-              <button class="produk-btn">
-                <div class="droplet-spec"><i class="fas fa-wrench"></i> Jasa Install Panel Pterodactyl</div>
-                <div class="droplet-price">Rp10.000 / 1x Setup & Node</div>
-              </button>
-            </a>
-          </div>
-        </div>
-      </section>
-
-          <section class="node-green-service">
-            <div class="container">
-              <h2><i class="fas fa-wrench"></i> Jasa Hijaukan Node Panel Pterodactyl</h2>
-              <div class="panel-buttons">
-                <a href="https://wa.me/601156973637?text=Halo%20saya%20ingin%20pesan%20Jasa%20Hijaukan%20Node%20Panel%20Pterodactyl" target="_blank">
-                <button class="produk-btn">
-                  <div class="droplet-spec"><i class="fas fa-wrench"></i>Jasa Ijo-in Node</div>
-                  <div class="droplet-price">Rp3.000 / Node</div>
-                </button>
-                </a>
-            </div>
-          </section>
-          <section class="node-green-service">
-            <div class="container">
-              <h2><i class="fas fa-server"></i> Admin Panel</h2>
-              <div class="panel-buttons">
-                <a href="https://wa.me/601156973637?text=Halo%20saya%20ingin%20pesan%20Admin%20Panel" target="_blank">
-                  <button class="produk-btn">
-                    <div class="droplet-spec"><i class="fas fa-server"></i>Admin Panel</div>
-                    <div class="droplet-price">Rp15.000 / PANEL</div>
-                  </button>
-                </a>
-            </div>
-          </section>
-          <section class="node-green-service">
-            <div class="container">
-              <h2><i class="fas fa-cloud"></i> Owner Jasher </h2>
-              <div class="panel-buttons">
-                <a href="https://wa.me/601156973637?text=Halo%20saya%20ingin%20pesan%Owner%Jasher" target="_blank">
-                  <button class="produk-btn">
-                    <div class="droplet-spec"><i class="fas fa-cloud"></i>Owner Jasher</div>
-                    <div class="droplet-price">Rp25.000 / BOT</div>
-                  </button>
-                </a>
-            </div>
-          </section>
-
-          <section class="node-green-service">
-            <div class="container">
-              <h2><i class="fas fa-laptop-code"></i> Jasa Pembuatan Website</h2>
-              <div class="panel-buttons">
-                <a href="https://wa.me/601156973637?text=Halo%20saya%20ingin%20pesan%20Website%201%20(Medium)" target="_blank">
-                  <button class="produk-btn">
-                    <div class="droplet-spec"><i class="fas fa-laptop-code"></i>Website 1 ( Medium )</div>
-                    <div class="droplet-price">Rp50.000 / WEBSITE</div>
-                  </button>
-                </a>
-                <a href="https://wa.me/601156973637?text=Halo%20saya%20ingin%20pesan%20Website%202%20(Normal)" target="_blank">
-                  <button class="produk-btn">
-                    <div class="droplet-spec"><i class="fas fa-laptop-code"></i>Website 2 ( Normal )</div>
-                    <div class="droplet-price">Rp70.000 / WEBSITE</div>
-                  </button>
-                </a>
-                <a href="https://wa.me/601156973637?text=Halo%20saya%20ingin%20pesan%20Website%203%20(Hard)" target="_blank">
-                  <button class="produk-btn">
-                    <div class="droplet-spec"><i class="fas fa-laptop-code"></i>Website 3 ( Hard )</div>
-                    <div class="droplet-price">Rp100.000 / WEBSITE</div>
-                  </button>
-                </a>
-
-          </section>
-          
-
-      </div>
+    <!-- Username Input with Copy -->
+    <div class="fade-in mx-auto max-w-xs" id="usernameContainer">
+      <label
+        class="block mb-2 font-semibold text-[#00ff88] text-lg text-center"
+        for="usernameInput"
+        >Masukkan Username Roblox Anda</label
+      >
+      <input
+        aria-label="Input username Roblox"
+        autocomplete="off"
+        class="w-full"
+        id="usernameInput"
+        maxlength="20"
+        minlength="3"
+        pattern="^[A-Za-z0-9_]{3,20}$"
+        placeholder="Contoh: Player_123"
+        spellcheck="false"
+        type="text"
+        tabindex="0"
+      />
+      <button
+        aria-label="Copy username to clipboard"
+        id="copyUsernameBtn"
+        tabindex="0"
+        title="Salin username"
+        type="button"
+      >
+        <i class="fas fa-copy"></i>
+      </button>
     </div>
-  </section>
 
-  <div class="highlight-section">
-    <h2>Kenapa Pilih LIXX SHOP?</h2>
-    <div class="highlight-box">✓ Harga Termurah & Transparan</div>
-    <div class="highlight-box">✓ Support 24/7 via WhatsApp</div>
-    <div class="highlight-box">✓ Proses Cepat & Otomatis</div>
-    <div class="highlight-box">✓ Warantty Duit Kembali</div>
-  </div>
-  </section>
+    <!-- Robux Packages Grid -->
+    <section aria-label="Paket Robux" class="fade-in" id="robuxPackages">
+      <div
+        aria-pressed="false"
+        class="package-card"
+        data-price="13200"
+        data-robux="100"
+        role="button"
+        tabindex="0"
+      >
+        <div aria-hidden="true" class="robux-icon">
+          <i class="fas fa-coins"></i>
+        </div>
+        <h4>
+          100 Robux
+          <i
+            class="fas fa-award package-accessory"
+            title="Best Value"
+            aria-hidden="true"
+            tabindex="-1"
+          ></i>
+        </h4>
+        <div class="price">Rp 13.200</div>
+        <div aria-label="Rating 4 dari 5 bintang" class="stars">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i
+          ><i class="fas fa-star"></i><i class="fas fa-star"></i
+          ><i class="fas fa-star-half-alt"></i>
+        </div>
+        <button class="buy-now-btn" type="button">Buy Now</button>
+      </div>
+      <div
+        aria-pressed="false"
+        class="package-card best-seller"
+        data-price="26400"
+        data-robux="200"
+        role="button"
+        tabindex="0"
+      >
+        <div aria-label="Best Seller" class="badge">🔥 Best Seller</div>
+        <div aria-hidden="true" class="robux-icon">
+          <i class="fas fa-coins"></i>
+        </div>
+        <h4>
+          200 Robux
+          <i
+            class="fas fa-star package-accessory"
+            title="Top Rated"
+            aria-hidden="true"
+            tabindex="-1"
+          ></i>
+        </h4>
+        <div class="price">Rp 26.400</div>
+        <div aria-label="Rating 5 dari 5 bintang" class="stars">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i
+          ><i class="fas fa-star"></i><i class="fas fa-star"></i
+          ><i class="fas fa-star"></i>
+        </div>
+        <button class="buy-now-btn" type="button">Buy Now</button>
+      </div>
+      <div
+        aria-pressed="false"
+        class="package-card"
+        data-price="66000"
+        data-robux="500"
+        role="button"
+        tabindex="0"
+      >
+        <div aria-hidden="true" class="robux-icon">
+          <i class="fas fa-coins"></i>
+        </div>
+        <h4>
+          500 Robux
+          <i
+            class="fas fa-gem package-accessory"
+            title="Premium"
+            aria-hidden="true"
+            tabindex="-1"
+          ></i>
+        </h4>
+        <div class="price">Rp 66.000</div>
+        <div aria-label="Rating 4.5 dari 5 bintang" class="stars">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i
+          ><i class="fas fa-star"></i><i class="fas fa-star"></i
+          ><i class="fas fa-star-half-alt"></i>
+        </div>
+        <button class="buy-now-btn" type="button">Buy Now</button>
+      </div>
+      <div
+        aria-pressed="false"
+        class="package-card"
+        data-price="132000"
+        data-robux="1000"
+        role="button"
+        tabindex="0"
+      >
+        <div aria-hidden="true" class="robux-icon">
+          <i class="fas fa-coins"></i>
+        </div>
+        <h4>
+          1000 Robux
+          <i
+            class="fas fa-certificate package-accessory"
+            title="Exclusive"
+            aria-hidden="true"
+            tabindex="-1"
+          ></i>
+        </h4>
+        <div class="price">Rp 132.000</div>
+        <div aria-label="Rating 5 dari 5 bintang" class="stars">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i
+          ><i class="fas fa-star"></i><i class="fas fa-star"></i
+          ><i class="fas fa-star"></i>
+        </div>
+        <button class="buy-now-btn" type="button">Buy Now</button>
+      </div>
+      <div
+        aria-pressed="false"
+        class="package-card"
+        data-price="198000"
+        data-robux="1500"
+        role="button"
+        tabindex="0"
+      >
+        <div aria-hidden="true" class="robux-icon">
+          <i class="fas fa-coins"></i>
+        </div>
+        <h4>
+          1500 Robux
+          <i
+            class="fas fa-trophy package-accessory"
+            title="Top Seller"
+            aria-hidden="true"
+            tabindex="-1"
+          ></i>
+        </h4>
+        <div class="price">Rp 198.000</div>
+        <div aria-label="Rating 4.5 dari 5 bintang" class="stars">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i
+          ><i class="fas fa-star"></i><i class="fas fa-star"></i
+          ><i class="fas fa-star-half-alt"></i>
+        </div>
+        <button class="buy-now-btn" type="button">Buy Now</button>
+      </div>
+    </section>
 
-<section id="kontak" class="kontak">
-  <div class="container kontak-box">
-    <h2>Hubungi Kami</h2>
-    <p>Chat langsung via WhatsApp:</p>
-    <a href="https://wa.me/601156973637" class="btn">Klik untuk Chat</a>
-  </div>
-</section>
+    <!-- Top Up Section -->
+    <section
+      aria-label="Form top up Robux"
+      class="bg-[#003311] rounded-2xl shadow-lg p-8 mb-12 fade-in max-w-md mx-auto"
+    >
+      <h2
+        class="text-3xl font-bold text-[#00ff88] mb-6 text-center"
+        tabindex="0"
+      >
+        Masukkan Jumlah Robux
+      </h2>
+      <div class="flex flex-col items-center container mx-auto relative">
+        <div class="flex items-center w-full justify-center">
+          <input
+            aria-label="Input jumlah Robux"
+            autocomplete="off"
+            class="w-full px-5 py-3 rounded-xl border-2 border-green-700 focus:outline-none focus:ring-2 focus:ring-[#00ff88] text-lg mb-1 bg-[#002a0d] text-[#b3ffcc]"
+            id="jumlah-robux"
+            inputmode="numeric"
+            max="100000"
+            min="20"
+            pattern="[0-9]*"
+            placeholder="Minimal 20 Robux, Maksimal 100000 Robux"
+            type="number"
+            tabindex="0"
+          />
+          <span
+            aria-live="polite"
+            class="select-none"
+            id="estimasi-kedatangan"
+            style="user-select:none;"
+          ></span>
+        </div>
+        <p
+          aria-live="assertive"
+          class="text-red-500 font-semibold mb-2 hidden"
+          id="inputError"
+          role="alert"
+        ></p>
+        <p
+          aria-live="polite"
+          class="text-2xl font-extrabold text-[#00ff88] min-h-[2.5rem] w-full text-center select-none"
+          id="harga-final"
+          tabindex="0"
+        >
+          —
+        </p>
+        <p
+          class="hidden text-center text-[#00ff88] font-semibold italic select-none"
+          id="priceNote"
+        >
+          *Harga sudah termasuk biaya layanan.*
+        </p>
+        <button
+          aria-label="Konfirmasi via WhatsApp"
+          class="cta-btn"
+          disabled
+          id="checkoutBtn"
+          type="button"
+          tabindex="0"
+        >
+          Order Now
+        </button>
+        <p class="mt-2 text-green-300 text-sm select-none" tabindex="0">
+          First come, first served—stok terbatas setiap hari!
+        </p>
+      </div>
+      <div
+        aria-label="Metode pembayaran"
+        class="mt-10 flex justify-center gap-10 flex-wrap"
+        id="paymentMethods"
+      >
+        <button
+          aria-label="Bayar dengan QRIS"
+          class="payment-method"
+          tabindex="0"
+          type="button"
+        >
+          <img
+            alt="Logo QRIS payment method, black QR code icon on white background"
+            height="80"
+            loading="lazy"
+            src="https://storage.googleapis.com/a1aa/image/46c9716c-e58e-482a-6b2e-23b89b01335f.jpg"
+            width="80"
+          />
+          QRIS
+        </button>
+        <button
+          aria-label="Bayar dengan DANA"
+          class="payment-method"
+          tabindex="0"
+          type="button"
+        >
+          <img
+            alt="Logo DANA payment method, blue wallet icon on white background"
+            height="80"
+            loading="lazy"
+            src="https://storage.googleapis.com/a1aa/image/f50c0bb9-fd10-4a32-4243-16e42b3ac94d.jpg"
+            width="80"
+          />
+          DANA
+        </button>
+        <button
+          aria-label="Bayar dengan GOPAY"
+          class="payment-method"
+          tabindex="0"
+          type="button"
+        >
+          <img
+            alt="Logo GOPAY payment method, green mobile wallet icon on white background"
+            height="80"
+            loading="lazy"
+            src="https://storage.googleapis.com/a1aa/image/fadb4eed-cb4c-4526-c105-2b0db8b9231e.jpg"
+            width="80"
+          />
+          GOPAY
+        </button>
+      </div>
+      <div
+        aria-label="Informasi metode pembayaran"
+        class="payment-info select-none"
+        tabindex="0"
+      >
+        <img
+          alt="DANA"
+          height="32"
+          src="https://storage.googleapis.com/a1aa/image/e3a21188-3d52-409b-23c6-bc0fb65d9133.jpg"
+          width="32"
+        />
+        <br />
+        <small>DANA: 0895428431963 (Rafa)</small>
+        <img
+          alt="GoPay"
+          height="32"
+          src="https://storage.googleapis.com/a1aa/image/29df5381-7cd3-48a2-bd8d-99b0e641ce41.jpg"
+          style="margin-left:16px;"
+          width="32"
+        />
+        <br />
+        <small>GoPay: 0895428431963 (Yans)</small>
+      </div>
+    </section>
 
+    <!-- Gamepass Section -->
+    <section
+      aria-label="Daftar gamepass Roblox yang dijual"
+      class="bg-[#003311] rounded-2xl shadow-lg p-8 mb-12 fade-in"
+    >
+      <h2
+        class="text-3xl font-bold text-[#00ff88] mb-6 text-center"
+        tabindex="0"
+      >
+        MENJUAL GAMEPASS ROBLOX VIA GIFT
+      </h2>
+      <ul class="max-w-3xl mx-auto space-y-6">
+        <li
+          class="flex flex-col sm:flex-row items-center sm:items-start bg-[#004d22] rounded-xl p-5 shadow-md hover:shadow-lg transition gamepass-item"
+          tabindex="0"
+        >
+          <img
+            alt="Roblox avatar wearing a cool red jacket and sunglasses with a gift box icon"
+            class="w-32 h-32 object-contain rounded-lg mb-4 sm:mb-0 sm:mr-6 shadow"
+            height="128"
+            loading="lazy"
+            src="https://storage.googleapis.com/a1aa/image/1ac63be0-31fe-43b3-4468-3d39eb0b1d91.jpg"
+            width="128"
+          />
+          <div class="gamepass-content">
+            <h3 class="font-semibold text-xl text-[#00ff88] mb-1">
+              GAMEPASS CDID
+              <i
+                class="fas fa-shield-alt accessory-icon"
+                title="Aman & Terpercaya"
+                aria-hidden="true"
+                tabindex="-1"
+              ></i>
+            </h3>
+            <p class="text-green-300 text-base">
+              Dapatkan gamepass premium dengan fitur eksklusif yang dikirim langsung
+              via gift Roblox. Aman dan cepat!
+            </p>
+          </div>
+        </li>
+        <li
+          class="flex flex-col sm:flex-row items-center sm:items-start bg-[#004d22] rounded-xl p-5 shadow-md hover:shadow-lg transition gamepass-item"
+          tabindex="0"
+        >
+          <img
+            alt="Roblox avatar holding a golden gift box with sparkles around"
+            class="w-32 h-32 object-contain rounded-lg mb-4 sm:mb-0 sm:mr-6 shadow"
+            height="128"
+            loading="lazy"
+            src="https://storage.googleapis.com/a1aa/image/e16ef611-5232-4800-375e-61f7691eb7fa.jpg"
+            width="128"
+          />
+          <div class="gamepass-content">
+            <h3 class="font-semibold text-xl text-[#00ff88] mb-1">
+              GAMEPASS BLOX FRUIT
+              <i
+                class="fas fa-gift accessory-icon"
+                title="Bonus Gift"
+                aria-hidden="true"
+                tabindex="-1"
+              ></i>
+            </h3>
+            <p class="text-green-300 text-base">
+              Tingkatkan pengalaman bermain dengan gamepass eksklusif yang kami
+              kirimkan via gift Roblox secara aman dan terpercaya.
+            </p>
+          </div>
+        </li>
+        <li
+          class="flex flex-col sm:flex-row items-center sm:items-start bg-[#004d22] rounded-xl p-5 shadow-md hover:shadow-lg transition gamepass-item"
+          tabindex="0"
+        >
+          <img
+            alt="Roblox avatar with a blue hoodie and gift ribbon icon"
+            class="w-32 h-32 object-contain rounded-lg mb-4 sm:mb-0 sm:mr-6 shadow"
+            height="128"
+            loading="lazy"
+            src="https://storage.googleapis.com/a1aa/image/6395ea0a-8e78-4182-196d-b9d37eab9f94.jpg"
+            width="128"
+          />
+          <div class="gamepass-content">
+            <h3 class="font-semibold text-xl text-[#00ff88] mb-1">
+              GAMEPASS GROW A GARDEN
+              <i
+                class="fas fa-leaf accessory-icon"
+                title="Eco Friendly"
+                aria-hidden="true"
+                tabindex="-1"
+              ></i>
+            </h3>
+            <p class="text-green-300 text-base">
+              Akses fitur premium dan item langka dengan gamepass yang kami kirimkan
+              langsung via gift Roblox.
+            </p>
+          </div>
+        </li>
+        <li
+          class="flex flex-col sm:flex-row items-center sm:items-start bg-[#004d22] rounded-xl p-5 shadow-md hover:shadow-lg transition gamepass-item"
+          tabindex="0"
+        >
+          <img
+            alt="Roblox avatar with a futuristic helmet and glowing gift box"
+            class="w-32 h-32 object-contain rounded-lg mb-4 sm:mb-0 sm:mr-6 shadow"
+            height="128"
+            loading="lazy"
+            src="https://storage.googleapis.com/a1aa/image/492f1966-43a5-443c-fe0a-6444c4f112b1.jpg"
+            width="128"
+          />
+          <div class="gamepass-content">
+            <h3 class="font-semibold text-xl text-[#00ff88] mb-1">
+              GAMEPASS BLUE LOCK
+              <i
+                class="fas fa-lock accessory-icon"
+                title="Secure"
+                aria-hidden="true"
+                tabindex="-1"
+              ></i>
+            </h3>
+            <p class="text-green-300 text-base">
+              Nikmati fitur dan akses premium dengan gamepass yang dikirimkan via gift
+              Roblox secara cepat dan aman.
+            </p>
+          </div>
+        </li>
+        <li
+          class="flex flex-col sm:flex-row items-center sm:items-start bg-[#004d22] rounded-xl p-5 shadow-md hover:shadow-lg transition gamepass-item"
+          tabindex="0"
+        >
+          <img
+            alt="Roblox avatar with a pirate hat and treasure chest gift"
+            class="w-32 h-32 object-contain rounded-lg mb-4 sm:mb-0 sm:mr-6 shadow"
+            height="128"
+            loading="lazy"
+            src="https://storage.googleapis.com/a1aa/image/d1b88944-3513-4918-d827-6706aa4d9d34.jpg"
+            width="128"
+          />
+          <div class="gamepass-content">
+            <h3 class="font-semibold text-xl text-[#00ff88] mb-1">
+              GAMEPASS BROOKHAVEN
+              <i
+                class="fas fa-ship accessory-icon"
+                title="Adventure"
+                aria-hidden="true"
+                tabindex="-1"
+              ></i>
+            </h3>
+            <p class="text-green-300 text-base">
+              Dapatkan akses ke fitur bajak laut dan item langka dengan gamepass gift
+              Roblox kami.
+            </p>
+          </div>
+        </li>
+        <li
+          class="flex flex-col sm:flex-row items-center sm:items-start bg-[#004d22] rounded-xl p-5 shadow-md hover:shadow-lg transition gamepass-item"
+          tabindex="0"
+        >
+          <img
+            alt="Roblox avatar with a ninja outfit and gift box with shuriken"
+            class="w-32 h-32 object-contain rounded-lg mb-4 sm:mb-0 sm:mr-6 shadow"
+            height="128"
+            loading="lazy"
+            src="https://storage.googleapis.com/a1aa/image/913a4f35-a9f5-44c1-976c-76cb07c15ad8.jpg"
+            width="128"
+          />
+          <div class="gamepass-content">
+            <h3 class="font-semibold text-xl text-[#00ff88] mb-1">
+              GAMEPASS DEAD RAILS
+              <i
+                class="fas fa-mask accessory-icon"
+                title="Stealth"
+                aria-hidden="true"
+                tabindex="-1"
+              ></i>
+            </h3>
+            <p class="text-green-300 text-base">
+              Akses fitur ninja dan item eksklusif dengan gamepass yang dikirim via gift
+              Roblox.
+            </p>
+          </div>
+        </li>
+        <li
+          class="bg-[#005522] rounded-xl p-5 shadow-md text-center text-[#00ff88] font-semibold text-lg select-none"
+          tabindex="0"
+        >
+          DAN APAPUN YANG BISA DI GIFT
+        </li>
+      </ul>
+    </section>
 
-  <footer>
-    <div class="container">
-      <p>© 2025 LIXXSHOP.MY.ID — All Rights Reserved.</p>
+    <!-- Tabs Section -->
+    <section class="max-w-4xl mx-auto fade-in">
+      <div
+        aria-label="Informasi tambahan"
+        class="flex justify-center space-x-6 mb-8 flex-wrap"
+        role="tablist"
+      >
+        <button
+          aria-controls="caraPembelian"
+          aria-selected="true"
+          class="tab-btn"
+          data-tab="caraPembelian"
+          id="tab-caraPembelian"
+          role="tab"
+          tabindex="0"
+        >
+          Cara Pembelian
+        </button>
+        <button
+          aria-controls="testimoni"
+          aria-selected="false"
+          class="tab-btn"
+          data-tab="testimoni"
+          id="tab-testimoni"
+          role="tab"
+          tabindex="-1"
+        >
+          Testimoni
+        </button>
+        <button
+          aria-controls="bigSaleTestimoni"
+          aria-selected="false"
+          class="tab-btn"
+          data-tab="bigSaleTestimoni"
+          id="tab-bigSaleTestimoni"
+          role="tab"
+          tabindex="-1"
+        >
+          BIG SALE TESTIMONI
+        </button>
+        <button
+          aria-controls="kontak"
+          aria-selected="false"
+          class="tab-btn"
+          data-tab="kontak"
+          id="tab-kontak"
+          role="tab"
+          tabindex="-1"
+        >
+          Kontak Admin
+        </button>
+      </div>
+      <div
+        aria-labelledby="tab-caraPembelian"
+        class="tab-content bg-[#003311] rounded-xl shadow-lg p-8 text-green-300 max-w-3xl mx-auto"
+        id="caraPembelian"
+        role="tabpanel"
+      >
+        <h3 class="text-2xl font-bold text-[#00ff88] mb-5">Cara Pembelian</h3>
+        <ol class="list-decimal list-inside space-y-3 text-lg">
+          <li>Buat gamepass di Roblox sesuai instruksi admin.</li>
+          <li>Atur harga gamepass sesuai arahan admin.</li>
+          <li>Pastikan fitur enable regional dimatikan agar pembelian berhasil.</li>
+          <li>
+            Video tutorial lengkap:
+            <a
+              class="text-[#00ff88] underline hover:text-[#00cc6a]"
+              href="https://vt.tiktok.com/ZSkANYJU9/"
+              rel="noopener noreferrer"
+              target="_blank"
+              >Tonton di TikTok</a
+            >
+          </li>
+        </ol>
+      </div>
+      <div
+        aria-labelledby="tab-testimoni"
+        class="tab-content bg-[#003311] rounded-xl shadow-lg p-8 text-green-300 max-w-3xl mx-auto hidden"
+        id="testimoni"
+        role="tabpanel"
+      >
+        <h3 class="text-2xl font-bold text-[#00ff88] mb-5">Testimoni</h3>
+        <p class="text-lg leading-relaxed">
+          "Pelayanan cepat dan harga sangat bersahabat! Saya sangat puas dengan
+          YANSS STORE." – <strong>Rizky</strong><br /><br />
+          "Proses top up mudah dan admin sangat responsif. Recommended banget!" –
+          <strong>Sari</strong><br /><br />
+          Untuk testimoni lebih lengkap, kunjungi saluran WhatsApp kami:
+          <a
+            class="text-[#00ff88] underline hover:text-[#00cc6a]"
+            href="https://whatsapp.com/channel/0029Vb6Eseb6RGJ8rapkMb2x"
+            rel="noopener noreferrer"
+            target="_blank"
+            >Saluran WhatsApp</a
+          >
+        </p>
+      </div>
+      <div
+        aria-labelledby="tab-bigSaleTestimoni"
+        class="tab-content bg-[#003311] rounded-xl shadow-lg p-8 text-green-300 max-w-3xl mx-auto hidden"
+        id="bigSaleTestimoni"
+        role="tabpanel"
+      >
+        <h3
+          class="text-2xl font-bold text-[#00ff88] mb-5 text-center select-none"
+          tabindex="0"
+        >
+          YANSSZS STORE • 400+ TESTIMONI
+        </h3>
+        <iframe
+          id="bigSaleTestimoniEmbed"
+          src="https://www.instagram.com/p/DLfEAuJym7r/embed"
+          title="Instagram post embed for BIG SALE TESTIMONI"
+          loading="lazy"
+          allowtransparency="true"
+          scrolling="no"
+          frameborder="0"
+          aria-label="Instagram post embed"
+        ></iframe>
+      </div>
+      <div
+        aria-labelledby="tab-kontak"
+        class="tab-content bg-[#003311] rounded-xl shadow-lg p-8 text-green-300 max-w-3xl mx-auto hidden"
+        id="kontak"
+        role="tabpanel"
+      >
+        <h3 class="text-2xl font-bold text-[#00ff88] mb-5">Kontak Admin</h3>
+        <p class="text-lg">
+          Anda dapat menghubungi admin melalui WhatsApp di nomor:<br />
+          <strong class="text-[#00ff88] text-xl">+62 895-4284-31963</strong>
+        </p>
+        <a
+          class="inline-flex items-center mt-6 px-6 py-3 bg-[#00ff88] hover:bg-[#00cc6a] text-[#0a1e0a] rounded-xl font-semibold shadow-lg transition duration-300 focus:outline-none focus:ring-4 focus:ring-[#00ff88]"
+          href="https://wa.me/62895428431963"
+          rel="noopener noreferrer"
+          tabindex="0"
+          target="_blank"
+        >
+          <i class="fab fa-whatsapp fa-lg mr-3"></i>Chat Admin via WhatsApp
+        </a>
+      </div>
+    </section>
 
-      <script>
-        function closePopup() {
-          const popup = document.getElementById('welcome-popup');
-          popup.classList.remove('show');
-          popup.classList.add('hide');
-          setTimeout(() => {
-            popup.style.display = 'none';
-          }, 500); // tunggu sampai transisi selesai
-        }
+    <!-- Flash Sale Teaser -->
+    <section id="flashSaleTeaser" aria-label="Flash Sale Teaser" tabindex="0" role="region" aria-live="polite">
+      SEGERA HADIR FLASH SALE BIG YANSSZS STORE – 100 Robux / 11k
+    </section>
 
-      </script>      
-      
+    <!-- AI Chatbot Section -->
+    <section
+      aria-label="Bantuan AI - Tanya Kami"
+      class="max-w-4xl mx-auto mt-16 bg-[#003311] rounded-2xl shadow-lg p-8 fade-in"
+    >
+      <h2
+        class="text-3xl font-bold text-[#00ff88] mb-6 text-center"
+        tabindex="0"
+      >
+        Bantuan AI - Tanya Kami
+      </h2>
+      <div
+        aria-atomic="true"
+        aria-live="polite"
+        class="flex flex-col space-y-3 h-96 overflow-y-auto border border-green-700 rounded-xl p-4 bg-[#002a0d]"
+        id="chatContainer"
+        role="log"
+      >
+        <div class="chat-bubble chat-bot" tabindex="0">
+          👋 Halo! Saya YanssBot, asisten virtual Anda. Ada yang bisa saya bantu
+          tentang top up Robux? Tanyakan apa saja, saya siap membantu! 😊
+        </div>
+      </div>
+      <form
+        aria-label="Form chat dengan YanssBot"
+        class="mt-4 flex space-x-3"
+        id="chatForm"
+      >
+        <input
+          aria-label="Input pertanyaan"
+          autocomplete="off"
+          class="flex-grow border border-green-700 rounded-xl px-4 py-3 bg-[#002a0d] text-[#b3ffcc] focus:outline-none focus:ring-2 focus:ring-[#00ff88]"
+          id="chatInput"
+          placeholder="Tulis pertanyaanmu di sini..."
+          required
+          type="text"
+          tabindex="0"
+        />
+        <button
+          aria-label="Kirim pertanyaan"
+          class="bg-[#00ff88] hover:bg-[#00cc6a] text-[#0a1e0a] font-semibold px-6 rounded-xl transition duration-300 focus:outline-none focus:ring-4 focus:ring-[#00ff88]"
+          type="submit"
+        >
+          Kirim
+        </button>
+      </form>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-[#002a0d] border-t border-green-700 mt-16 py-4">
+    <div
+      class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center text-green-400 text-sm space-y-4 md:space-y-0"
+    >
+      <p>© 2024 YANSS STORE. All rights reserved.</p>
+      <div
+        aria-label="Informasi berjalan footer"
+        id="footerMarquee"
+        tabindex="0"
+        role="region"
+      >
+        <span
+          >LIXX STORE OPEN 24 JAM • PROMO MENARIK LAINNYA • CEK SEKARANG</span
+        >
+      </div>
+      <div class="flex space-x-6">
+        <a
+          aria-label="Facebook"
+          class="hover:text-[#00ff88] transition focus:outline-none focus:ring-2 focus:ring-[#00ff88] rounded"
+          href="https://facebook.com"
+          tabindex="0"
+          target="_blank"
+          ><i class="fab fa-facebook fa-lg"></i
+        ></a>
+        <a
+          aria-label="Twitter"
+          class="hover:text-[#00ff88] transition focus:outline-none focus:ring-2 focus:ring-[#00ff88] rounded"
+          href="https://twitter.com"
+          tabindex="0"
+          target="_blank"
+          ><i class="fab fa-twitter fa-lg"></i
+        ></a>
+        <a
+          aria-label="Instagram"
+          class="hover:text-[#00ff88] transition focus:outline-none focus:ring-2 focus:ring-[#00ff88] rounded"
+          href="https://instagram.com"
+          tabindex="0"
+          target="_blank"
+          ><i class="fab fa-instagram fa-lg"></i
+        ></a>
+        <a
+          aria-label="YouTube"
+          class="hover:text-[#00ff88] transition focus:outline-none focus:ring-2 focus:ring-[#00ff88] rounded"
+          href="https://youtube.com"
+          tabindex="0"
+          target="_blank"
+          ><i class="fab fa-youtube fa-lg"></i
+        ></a>
+      </div>
     </div>
   </footer>
-  
+
+  <!-- Toast Container -->
+  <div aria-atomic="true" aria-live="polite" id="toastContainer"></div>
+
+  <!-- AI Assistant Widget -->
+  <div id="aiAssistantWidget" role="region" aria-label="YANSSZS Assistant">
+    <div id="aiAssistantHeader" tabindex="0" role="button" aria-expanded="false" aria-controls="aiAssistantContent">
+      LIXX ASSISTANT
+      <i class="fas fa-chevron-up" id="aiToggleIcon" aria-hidden="true"></i>
+    </div>
+    <div id="aiAssistantContent" tabindex="0" aria-live="polite" aria-atomic="true">
+      <div id="aiAssistantMessages" aria-live="polite" aria-atomic="true"></div>
+      <form id="aiAssistantForm" class="flex gap-2" aria-label="Chat input form">
+        <input
+          id="aiAssistantInput"
+          type="text"
+          placeholder="Tanya saya..."
+          autocomplete="off"
+          aria-label="Input pertanyaan untuk YANSSZS Assistant"
+          required
+        />
+        <button id="aiAssistantSendBtn" type="submit" aria-label="Kirim pertanyaan">
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    /* =========================
+       Module: Theme Toggle
+    ========================= */
+    (function () {
+      const htmlEl = document.documentElement;
+      const toggle = document.getElementById("themeToggle");
+      const label = document.getElementById("themeToggleLabel");
+
+      function applyTheme(theme) {
+        if (theme === "light") {
+          htmlEl.classList.add("light");
+          toggle.checked = true;
+          toggle.setAttribute("aria-checked", "true");
+          label.textContent = "Light Mode";
+        } else {
+          htmlEl.classList.remove("light");
+          toggle.checked = false;
+          toggle.setAttribute("aria-checked", "false");
+          label.textContent = "Dark Mode";
+        }
+      }
+
+      function saveTheme(theme) {
+        try {
+          localStorage.setItem("yanss-theme", theme);
+        } catch {
+          // ignore
+        }
+      }
+
+      function loadTheme() {
+        try {
+          return localStorage.getItem("yanss-theme");
+        } catch {
+          return null;
+        }
+      }
+
+      toggle.addEventListener("change", () => {
+        const theme = toggle.checked ? "light" : "dark";
+        applyTheme(theme);
+        saveTheme(theme);
+      });
+
+      // Initialize theme on load
+      const savedTheme = loadTheme();
+      if (savedTheme) {
+        applyTheme(savedTheme);
+      } else {
+        // Default dark
+        applyTheme("dark");
+      }
+    })();
+
+    /* =========================
+       Module: Sticky Navbar & Mobile Menu
+    ========================= */
+    (function () {
+      const navbar = document.getElementById("navbar");
+      const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+      const mobileMenu = document.getElementById("mobileMenu");
+
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 80) {
+          navbar.classList.add("scrolled");
+        } else {
+          navbar.classList.remove("scrolled");
+        }
+      });
+
+      mobileMenuBtn.addEventListener("click", () => {
+        const expanded =
+          mobileMenuBtn.getAttribute("aria-expanded") === "true" ? "false" : "true";
+        mobileMenuBtn.setAttribute("aria-expanded", expanded);
+        mobileMenu.classList.toggle("hidden");
+      });
+    })();
+
+    /* =========================
+       Module: Toast Notifications
+    ========================= */
+    const toastContainer = document.getElementById("toastContainer");
+    function showToast(message, type = "success") {
+      const toast = document.createElement("div");
+      toast.className = `toast ${type}`;
+      toast.textContent = message;
+      toastContainer.appendChild(toast);
+      setTimeout(() => {
+        toast.remove();
+      }, 4000);
+    }
+
+    /* =========================
+       Module: Validation & Price Calculation
+    ========================= */
+    const usernameInput = document.getElementById("usernameInput");
+    const robuxInput = document.getElementById("jumlah-robux");
+    const checkoutBtn = document.getElementById("checkoutBtn");
+    const priceDisplay = document.getElementById("harga-final");
+    const inputError = document.getElementById("inputError");
+    const priceNote = document.getElementById("priceNote");
+    const paymentMethods = document.getElementById("paymentMethods");
+    const estimasiKedatangan = document.getElementById("estimasi-kedatangan");
+
+    let selectedRobux = 0;
+    let selectedPrice = 0;
+    let selectedPaymentMethod = null;
+    let currentSurcharge = 0;
+
+    function validateUsername(username) {
+      const usernameRegex = /^[A-Za-z0-9_]{3,20}$/;
+      return usernameRegex.test(username);
+    }
+
+    function calculateFinalPrice(amount) {
+      if (!Number.isInteger(amount) || amount < 20 || amount > 100000) return null;
+      const baseRate = 13200 / 100;
+      const basePrice = amount * baseRate;
+      let surcharge = 0;
+      if (amount > 130) {
+        surcharge = Math.floor(Math.random() * 1001) + 1000; // 1000 to 2000 inclusive
+      }
+      currentSurcharge = surcharge;
+      return Math.ceil(basePrice + surcharge);
+    }
+
+    function updatePriceAndButton() {
+      const val = robuxInput.value.trim();
+      const amount = parseInt(val, 10);
+      if (
+        !val ||
+        isNaN(amount) ||
+        val.includes(".") ||
+        val.includes(",") ||
+        amount < 20 ||
+        amount > 100000 ||
+        !Number.isInteger(amount)
+      ) {
+        inputError.textContent = "Masukkan angka bulat antara 20 sampai 100000 Robux.";
+        inputError.classList.remove("hidden");
+        priceDisplay.style.opacity = 0;
+        estimasiKedatangan.textContent = "";
+        setTimeout(() => {
+          priceDisplay.textContent = "—";
+          priceDisplay.style.opacity = 1;
+        }, 100);
+        checkoutBtn.disabled = true;
+        priceNote.classList.add("hidden");
+        paymentMethods.classList.add("hidden");
+        selectedRobux = 0;
+        selectedPrice = 0;
+        currentSurcharge = 0;
+        return;
+      }
+      inputError.classList.add("hidden");
+      const price = calculateFinalPrice(amount);
+      selectedRobux = amount;
+      selectedPrice = price;
+      priceDisplay.style.opacity = 0;
+      setTimeout(() => {
+        priceDisplay.textContent = price ? `Rp${price.toLocaleString("id-ID")}` : "—";
+        priceDisplay.style.opacity = 1;
+      }, 100);
+      estimasiKedatangan.textContent = "Estimasi Kedatangan: 5 Hari";
+      checkoutBtn.disabled = !validateUsername(usernameInput.value.trim()) || !selectedPaymentMethod;
+      priceNote.classList.remove("hidden");
+      paymentMethods.classList.remove("hidden");
+    }
+
+    robuxInput.addEventListener("input", debounce(updatePriceAndButton, 300));
+
+    usernameInput.addEventListener("input", () => {
+      const username = usernameInput.value.trim();
+      checkoutBtn.disabled = !(
+        validateUsername(username) && selectedRobux >= 20 && selectedPrice > 0 && selectedPaymentMethod
+      );
+    });
+
+    /* =========================
+       Module: Payment Method Selection
+    ========================= */
+    const paymentButtons = paymentMethods.querySelectorAll(".payment-method");
+    paymentButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        paymentButtons.forEach((b) => {
+          b.classList.remove("ring-4", "ring-yellow-400");
+          b.setAttribute("aria-pressed", "false");
+        });
+        btn.classList.add("ring-4", "ring-yellow-400");
+        btn.setAttribute("aria-pressed", "true");
+        selectedPaymentMethod = btn.textContent.trim().toUpperCase();
+        checkoutBtn.disabled = !(
+          validateUsername(usernameInput.value.trim()) && selectedRobux >= 20 && selectedPrice > 0 && selectedPaymentMethod
+        );
+        showToast(`✅ Metode pembayaran dipilih: ${selectedPaymentMethod}`, "success");
+      });
+    });
+
+    /* =========================
+       Module: Robux Package Selection
+    ========================= */
+    const packageCards = document.querySelectorAll(".package-card");
+
+    packageCards.forEach((card) => {
+      const buyBtn = card.querySelector(".buy-now-btn");
+      buyBtn.addEventListener("click", () => {
+        const username = usernameInput.value.trim();
+        if (!validateUsername(username)) {
+          showToast(
+            "❌ Username Roblox tidak valid. Gunakan 3-20 karakter alfanumerik atau underscore.",
+            "error"
+          );
+          usernameInput.focus();
+          return;
+        }
+        packageCards.forEach((c) => {
+          c.classList.remove("selected");
+          c.setAttribute("aria-pressed", "false");
+        });
+        card.classList.add("selected");
+        card.setAttribute("aria-pressed", "true");
+
+        const robuxAmount = parseInt(card.getAttribute("data-robux"), 10);
+        robuxInput.value = robuxAmount;
+        selectedRobux = robuxAmount;
+
+        const price = calculateFinalPrice(robuxAmount);
+        selectedPrice = price;
+
+        priceDisplay.style.opacity = 0;
+        setTimeout(() => {
+          priceDisplay.textContent = price ? `Rp${price.toLocaleString("id-ID")}` : "—";
+          priceDisplay.style.opacity = 1;
+        }, 100);
+
+        estimasiKedatangan.textContent = "Estimasi Kedatangan: 5 Hari";
+
+        checkoutBtn.disabled = !validateUsername(usernameInput.value.trim()) || !selectedPaymentMethod;
+        priceNote.classList.remove("hidden");
+        paymentMethods.classList.remove("hidden");
+
+        showToast(`✅ Paket ${robuxAmount} Robux berhasil dipilih!`, "success");
+
+        document.getElementById("topupSection").scrollIntoView({ behavior: "smooth" });
+      });
+
+      card.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          card.querySelector(".buy-now-btn").click();
+        }
+      });
+    });
+
+    /* =========================
+       Module: Clipboard Copy Username
+    ========================= */
+    const copyUsernameBtn = document.getElementById("copyUsernameBtn");
+    copyUsernameBtn.addEventListener("click", () => {
+      const username = usernameInput.value.trim();
+      if (!username) {
+        showToast("❌ Username kosong, tidak ada yang disalin.", "error");
+        usernameInput.focus();
+        return;
+      }
+      navigator.clipboard
+        .writeText(username)
+        .then(() => {
+          showToast("✅ Username berhasil disalin ke clipboard.", "success");
+        })
+        .catch(() => {
+          showToast("❌ Gagal menyalin username. Silakan coba lagi.", "error");
+        });
+    });
+
+    /* =========================
+       Module: WhatsApp Confirmation
+    ========================= */
+    checkoutBtn.addEventListener("click", () => {
+      const userRaw = usernameInput.value.trim();
+      if (!validateUsername(userRaw)) {
+        alert("Username Roblox tidak valid. Gunakan 3-20 karakter alfanumerik atau underscore.");
+        usernameInput.focus();
+        return;
+      }
+      const user = userRaw.replace(/\s+/g, "");
+      const amt = selectedRobux;
+      const price = selectedPrice;
+      const method = selectedPaymentMethod;
+      const date = new Date().toLocaleDateString("id-ID");
+      if (!user || !amt || !price || !method) {
+        alert("Data pembelian tidak lengkap. Silakan periksa kembali.");
+        return;
+      }
+
+      const lines = [
+        "📥 Konfirmasi Pembayaran:",
+        `Username Roblox: ${user}`,
+        `Jumlah Robux: ${amt}`,
+        `Harga Robux: Rp${price.toLocaleString("id-ID")}`,
+        `Metode Pembayaran: ${method}`,
+        `Tanggal Pembelian: ${date}`,
+        "",
+        "Mohon proses pembelian ini ya🙏",
+      ];
+      const url = "https://wa.me/62895428431963?text=" + encodeURIComponent(lines.join("\n"));
+      checkoutBtn.disabled = true;
+      window.open(url, "_blank");
+      setTimeout(() => (checkoutBtn.disabled = false), 1200);
+    });
+
+    /* =========================
+       Module: Tabs Functionality
+    ========================= */
+    const tabs = document.querySelectorAll(".tab-btn");
+    const tabContents = document.querySelectorAll(".tab-content");
+
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const target = tab.getAttribute("data-tab");
+
+        tabs.forEach((t) => {
+          t.setAttribute("aria-selected", "false");
+          t.setAttribute("tabindex", "-1");
+          t.classList.remove("tab-btn-selected");
+        });
+        tab.setAttribute("aria-selected", "true");
+        tab.setAttribute("tabindex", "0");
+        tab.classList.add("tab-btn-selected");
+
+        tabContents.forEach((content) => {
+          if (content.id === target) {
+            content.classList.remove("hidden");
+          } else {
+            content.classList.add("hidden");
+          }
+        });
+      });
+    });
+
+    /* =========================
+       Module: AI Chatbot Form Submit (Dummy)
+    ========================= */
+    const chatForm = document.getElementById("chatForm");
+    const chatInput = document.getElementById("chatInput");
+    const chatContainer = document.getElementById("chatContainer");
+
+    chatForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const userMessage = chatInput.value.trim();
+      if (!userMessage) return;
+
+      const userBubble = document.createElement("div");
+      userBubble.className = "chat-bubble chat-user";
+      userBubble.textContent = userMessage;
+      chatContainer.appendChild(userBubble);
+      chatContainer.scrollTop = chatContainer.scrollHeight;
+
+      chatInput.value = "";
+      chatInput.disabled = true;
+
+      setTimeout(() => {
+        const botBubble = document.createElement("div");
+        botBubble.className = "chat-bubble chat-bot";
+
+        const lowerMsg = userMessage.toLowerCase();
+        if (lowerMsg.includes("harga")) {
+          botBubble.textContent = "Harga Robux mulai dari Rp13.200 per 100 Robux. Pilih paket yang Anda inginkan.";
+        } else if (lowerMsg.includes("cara beli") || lowerMsg.includes("cara pembelian")) {
+          botBubble.textContent = "Anda dapat memilih paket Robux, masukkan username Roblox, pilih metode pembayaran, lalu konfirmasi via WhatsApp.";
+        } else if (lowerMsg.includes("kontak") || lowerMsg.includes("admin")) {
+          botBubble.textContent = "Anda dapat menghubungi admin kami melalui WhatsApp di +62 895-4284-31963.";
+        } else {
+          botBubble.textContent = "Maaf, saya belum mengerti pertanyaan Anda. Silakan coba pertanyaan lain atau hubungi admin.";
+        }
+
+        chatContainer.appendChild(botBubble);
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+        chatInput.disabled = false;
+        chatInput.focus();
+      }, 1200);
+    });
+
+    /* =========================
+       Module: Debounce Helper
+    ========================= */
+    function debounce(func, wait) {
+      let timeout;
+      return function (...args) {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(this, args), wait);
+      };
+    }
+
+    /* =========================
+       Module: AI Assistant Widget
+    ========================= */
+    (function () {
+      const widget = document.getElementById("aiAssistantWidget");
+      const header = document.getElementById("aiAssistantHeader");
+      const content = document.getElementById("aiAssistantContent");
+      const toggleIcon = document.getElementById("aiToggleIcon");
+      const messagesContainer = document.getElementById("aiAssistantMessages");
+      const form = document.getElementById("aiAssistantForm");
+      const input = document.getElementById("aiAssistantInput");
+
+      let isOpen = false;
+
+      function toggleWidget() {
+        isOpen = !isOpen;
+        if (isOpen) {
+          content.classList.add("visible");
+          header.setAttribute("aria-expanded", "true");
+          toggleIcon.classList.remove("fa-chevron-up");
+          toggleIcon.classList.add("fa-chevron-down");
+          input.focus();
+        } else {
+          content.classList.remove("visible");
+          header.setAttribute("aria-expanded", "false");
+          toggleIcon.classList.remove("fa-chevron-down");
+          toggleIcon.classList.add("fa-chevron-up");
+        }
+      }
+
+      header.addEventListener("click", toggleWidget);
+      header.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          toggleWidget();
+        }
+      });
+
+      function appendMessage(text, sender = "bot") {
+        const msg = document.createElement("div");
+        msg.className = `ai-message ${sender}`;
+        msg.textContent = text;
+        messagesContainer.appendChild(msg);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+      }
+
+      async function fetchAIResponse(question) {
+        // Simulated AI response for demo; replace with real backend call
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            const q = question.toLowerCase();
+            if (q.includes("harga")) {
+              resolve("Harga Robux mulai dari Rp13.200 per 100 Robux. Promo dan diskon tersedia.");
+            } else if (q.includes("estimasi") || q.includes("waktu")) {
+              resolve("Estimasi kedatangan Robux adalah 5 hari kerja setelah konfirmasi pembayaran.");
+            } else if (q.includes("promo") || q.includes("diskon")) {
+              resolve("Kami selalu memiliki promo menarik, termasuk flash sale. Pantau terus website kami!");
+            } else {
+              resolve("Maaf, saya belum mengerti pertanyaan Anda. Silakan coba pertanyaan lain atau hubungi admin.");
+            }
+          }, 1500);
+        });
+      }
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const question = input.value.trim();
+        if (!question) return;
+        appendMessage(question, "user");
+        input.value = "";
+        input.disabled = true;
+        appendMessage("...", "bot");
+        try {
+          const response = await fetchAIResponse(question);
+          // Remove last "..." message
+          const lastMsg = messagesContainer.querySelector(".ai-message.bot:last-child");
+          if (lastMsg && lastMsg.textContent === "...") {
+            lastMsg.textContent = response;
+          } else {
+            appendMessage(response, "bot");
+          }
+        } catch {
+          appendMessage("Maaf, layanan AI sedang tidak tersedia. Silakan coba lagi nanti.", "bot");
+        } finally {
+          input.disabled = false;
+          input.focus();
+        }
+      });
+
+      // Initialize widget closed
+      toggleWidget();
+    })();
+  </script>
 </body>
 </html>
